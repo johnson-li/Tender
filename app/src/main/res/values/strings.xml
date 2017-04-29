@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Tender</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string name="navigation_drawer_main">首页</string>
+    <string name="navigation_drawer_call_for_bids">招标公告</string>
+    <string name="navigation_drawer_successful_bidders">中标公告</string>
+    <string name="navigation_drawer_credits">信誉</string>
+    <string name="navigation_drawer_links">行业链接</string>
+    <string name="navigation_drawer_help">帮助</string>
+    <string name="navigation_drawer_about">关于</string>
+</resources>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:id="@+id/nav_top" android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_camera"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/navigation_drawer_main"/>
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/navigation_drawer_call_for_bids"/>
+        <item
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/navigation_drawer_successful_bidders"/>
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="@string/navigation_drawer_credits"/>
+        <item
+            android:id="@+id/nav_links"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="@string/navigation_drawer_links"/>
+    </group>
+
+
+    <group android:id="@+id/nav_bottom" android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_help"
+            android:title="@string/navigation_drawer_help"/>
+        <item
+            android:id="@+id/nav_about"
+            android:title="@string/navigation_drawer_about"/>
+    </group>
+
+</menu>
