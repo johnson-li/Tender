@@ -3,19 +3,19 @@
 
     <group android:id="@+id/nav_top" android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_main"
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/navigation_drawer_main"/>
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_call_for"
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/navigation_drawer_call_for_bids"/>
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_bidders"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/navigation_drawer_successful_bidders"/>
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/nav_credits"
             android:icon="@drawable/ic_menu_manage"
             android:title="@string/navigation_drawer_credits"/>
         <item
