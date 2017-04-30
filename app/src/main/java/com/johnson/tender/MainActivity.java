@@ -10,6 +10,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity
     });
 
     navigationView.getMenu().getItem(0).setChecked(true);
+    onNavigationItemSelected(navigationView.getMenu().getItem(0));
   }
 
   @Override
@@ -68,9 +70,31 @@ public class MainActivity extends AppCompatActivity
   }
 
   @Override
+  public boolean onPrepareOptionsMenu(Menu menu) {
+    return super.onPrepareOptionsMenu(menu);
+  }
+
+  void search(String query) {
+
+  }
+
+  @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     // Inflate the menu; this adds items to the action bar if it is present.
     getMenuInflater().inflate(R.menu.main, menu);
+    final SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+    searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+      @Override
+      public boolean onQueryTextSubmit(String query) {
+        search(query);
+        return false;
+      }
+
+      @Override
+      public boolean onQueryTextChange(String newText) {
+        return false;
+      }
+    });
     return true;
   }
 
@@ -82,7 +106,7 @@ public class MainActivity extends AppCompatActivity
     int id = item.getItemId();
 
     //noinspection SimplifiableIfStatement
-    if (id == R.id.action_settings) {
+    if (id == R.id.action_search) {
       return true;
     }
 
@@ -95,9 +119,11 @@ public class MainActivity extends AppCompatActivity
     int id = item.getItemId();
 
     if (id == R.id.nav_main) {
-
+      getSupportFragmentManager().beginTransaction().replace(R.id.placeHolder, new MainFragment())
+          .addToBackStack(null).commit();
     } else if (id == R.id.nav_call_for) {
-
+      getSupportFragmentManager().beginTransaction().replace(R.id.placeHolder, new CallFragment())
+          .addToBackStack(null).commit();
     } else if (id == R.id.nav_bidders) {
 
     } else if (id == R.id.nav_credits) {
