@@ -15,9 +15,9 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/navigation_drawer_staff"/>
         <item
-            android:id="@+id/nav_credits"
+            android:id="@+id/nav_projects"
             android:icon="@drawable/ic_menu_manage"
-            android:title="@string/navigation_drawer_credits"/>
+            android:title="@string/navigation_drawer_projects"/>
         <item
             android:id="@+id/nav_links"
             android:icon="@drawable/ic_menu_manage"

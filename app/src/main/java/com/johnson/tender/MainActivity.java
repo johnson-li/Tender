@@ -127,8 +127,9 @@ public class MainActivity extends AppCompatActivity
     } else if (id == R.id.nav_staff) {
       getSupportFragmentManager().beginTransaction().replace(R.id.placeHolder, new StaffFragment())
           .addToBackStack(null).commit();
-    } else if (id == R.id.nav_credits) {
-
+    } else if (id == R.id.nav_projects) {
+      getSupportFragmentManager().beginTransaction().replace(R.id.placeHolder, new ProjectFragment())
+          .addToBackStack(null).commit();
     } else if (id == R.id.nav_links) {
 
     } else if (id == R.id.nav_help) {

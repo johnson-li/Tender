@@ -24,4 +24,5 @@
 
     <string name="company_detail_title">企业详情</string>
     <string name="staff_detail_title">员工详情</string>
+    <string name="project_detail_title">项目详情</string>
 </resources>
