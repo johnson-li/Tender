@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity
       getSupportFragmentManager().beginTransaction().replace(R.id.placeHolder, new MainFragment())
           .addToBackStack(null).commit();
     } else if (id == R.id.nav_call_for) {
-      getSupportFragmentManager().beginTransaction().replace(R.id.placeHolder, new CallFragment())
+      getSupportFragmentManager().beginTransaction().replace(R.id.placeHolder, new CompanyFragment())
           .addToBackStack(null).commit();
     } else if (id == R.id.nav_bidders) {
 

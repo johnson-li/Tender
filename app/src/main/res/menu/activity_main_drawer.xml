@@ -9,11 +9,11 @@
         <item
             android:id="@+id/nav_call_for"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/navigation_drawer_call_for_bids"/>
+            android:title="@string/navigation_drawer_companies"/>
         <item
             android:id="@+id/nav_bidders"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/navigation_drawer_successful_bidders"/>
+            android:title="@string/navigation_drawer_staff"/>
         <item
             android:id="@+id/nav_credits"
             android:icon="@drawable/ic_menu_manage"

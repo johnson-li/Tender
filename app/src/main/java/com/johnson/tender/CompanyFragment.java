@@ -17,15 +17,15 @@ import com.johnson.tender.databinding.FragmentCallBinding;
  * Created by Johnson on 2017/4/30.
  */
 
-public class CallFragment extends Fragment {
+public class CompanyFragment extends Fragment {
   FragmentCallBinding binding;
-  BidderAdapter adapter = new BidderAdapter();
+  CompanyAdapter adapter = new CompanyAdapter();
 
   @Nullable
   @Override
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     binding = DataBindingUtil.inflate(inflater, R.layout.fragment_call, container, false);
-    ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.navigation_drawer_call_for_bids);
+    ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.navigation_drawer_companies);
     binding.container.setHasFixedSize(true);
     RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
     binding.container.setLayoutManager(layoutManager);
@@ -36,7 +36,7 @@ public class CallFragment extends Fragment {
   @Override
   public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
     for (int i = 0; i < 10; i++) {
-      adapter.add(new Bidder());
+      adapter.add(new Company());
     }
   }
 }
