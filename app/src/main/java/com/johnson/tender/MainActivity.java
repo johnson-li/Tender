@@ -121,11 +121,12 @@ public class MainActivity extends AppCompatActivity
     if (id == R.id.nav_main) {
       getSupportFragmentManager().beginTransaction().replace(R.id.placeHolder, new MainFragment())
           .addToBackStack(null).commit();
-    } else if (id == R.id.nav_call_for) {
+    } else if (id == R.id.nav_company) {
       getSupportFragmentManager().beginTransaction().replace(R.id.placeHolder, new CompanyFragment())
           .addToBackStack(null).commit();
-    } else if (id == R.id.nav_bidders) {
-
+    } else if (id == R.id.nav_staff) {
+      getSupportFragmentManager().beginTransaction().replace(R.id.placeHolder, new StaffFragment())
+          .addToBackStack(null).commit();
     } else if (id == R.id.nav_credits) {
 
     } else if (id == R.id.nav_links) {
