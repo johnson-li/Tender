@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.johnson.tender.databinding.CompanyBinding;
+import com.johnson.tender.entity.Company;
 
 import java.util.ArrayList;
 import java.util.List;

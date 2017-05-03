@@ -11,7 +11,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.johnson.tender.api.RestApi;
 import com.johnson.tender.databinding.FragmentCompanyBinding;
+import com.johnson.tender.entity.Company;
+import com.johnson.tender.entity.ListResponse;
+
+import javax.inject.Inject;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -22,9 +31,13 @@ public class CompanyFragment extends Fragment {
   FragmentCompanyBinding binding;
   CompanyAdapter adapter = new CompanyAdapter();
 
+  @Inject
+  RestApi restApi;
+
   @Nullable
   @Override
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    ((App) getActivity().getApplication()).getNetworkComponent().inject(this);
     binding = DataBindingUtil.inflate(inflater, R.layout.fragment_company, container, false);
     ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.navigation_drawer_companies);
     binding.container.setHasFixedSize(true);
@@ -36,8 +49,19 @@ public class CompanyFragment extends Fragment {
 
   @Override
   public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-    for (int i = 0; i < 10; i++) {
-      adapter.add(new Company());
-    }
+    Call<ListResponse<Company>> call = restApi.getCompanies();
+    call.enqueue(new Callback<ListResponse<Company>>() {
+      @Override
+      public void onResponse(Call<ListResponse<Company>> call, Response<ListResponse<Company>> response) {
+        for (Company company : response.body().getContent()) {
+          adapter.add(company);
+        }
+      }
+
+      @Override
+      public void onFailure(Call<ListResponse<Company>> call, Throwable t) {
+        t.printStackTrace();
+      }
+    });
   }
 }

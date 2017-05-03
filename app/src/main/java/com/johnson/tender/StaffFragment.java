@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.johnson.tender.databinding.FragmentStaffBinding;
+import com.johnson.tender.entity.Staff;
 
 /**
  * Created by Johnson on 2017/5/2.

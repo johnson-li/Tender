@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.johnson.tender.databinding.FragmentProjectBinding;
+import com.johnson.tender.entity.Project;
 
 /**
  * Created by Johnson on 2017/5/2.

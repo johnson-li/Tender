@@ -1,11 +1,16 @@
 package com.johnson.tender;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -15,13 +20,22 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.johnson.tender.databinding.ActivityMainBinding;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
     implements NavigationView.OnNavigationItemSelectedListener {
 
   ActivityMainBinding binding;
+  List<String> permissions = new ArrayList<>();
+
+  {
+    permissions.add(Manifest.permission.INTERNET);
+  }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +71,31 @@ public class MainActivity extends AppCompatActivity
 
     navigationView.getMenu().getItem(0).setChecked(true);
     onNavigationItemSelected(navigationView.getMenu().getItem(0));
+
+    requestPermissions();
+  }
+
+  private void requestPermission(String permission, int callbackId) {
+    int permissionCheck = ContextCompat.checkSelfPermission(getApplicationContext(), permission);
+    if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+      ActivityCompat.requestPermissions(this, new String[]{permission}, callbackId);
+    }
+  }
+
+  private void requestPermissions() {
+    for (int i = 0; i < permissions.size(); i++) {
+      requestPermission(permissions.get(i), i);
+    }
+  }
+
+  @Override
+  public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    for (int res : grantResults) {
+      if (res != PackageManager.PERMISSION_DENIED) {
+        Toast.makeText(this, "You can not continue without permissions!", Toast.LENGTH_SHORT).show();
+        finish();
+      }
+    }
   }
 
   @Override
@@ -119,17 +158,17 @@ public class MainActivity extends AppCompatActivity
     int id = item.getItemId();
 
     if (id == R.id.nav_main) {
-      getSupportFragmentManager().beginTransaction().replace(R.id.placeHolder, new MainFragment())
-          .addToBackStack(null).commit();
+      getSupportFragmentManager().beginTransaction()
+          .replace(R.id.placeHolder, new MainFragment()).commit();
     } else if (id == R.id.nav_company) {
-      getSupportFragmentManager().beginTransaction().replace(R.id.placeHolder, new CompanyFragment())
-          .addToBackStack(null).commit();
+      getSupportFragmentManager().beginTransaction()
+          .replace(R.id.placeHolder, new CompanyFragment()).commit();
     } else if (id == R.id.nav_staff) {
-      getSupportFragmentManager().beginTransaction().replace(R.id.placeHolder, new StaffFragment())
-          .addToBackStack(null).commit();
+      getSupportFragmentManager().beginTransaction()
+          .replace(R.id.placeHolder, new StaffFragment()).commit();
     } else if (id == R.id.nav_projects) {
-      getSupportFragmentManager().beginTransaction().replace(R.id.placeHolder, new ProjectFragment())
-          .addToBackStack(null).commit();
+      getSupportFragmentManager().beginTransaction()
+          .replace(R.id.placeHolder, new ProjectFragment()).commit();
     } else if (id == R.id.nav_links) {
 
     } else if (id == R.id.nav_help) {

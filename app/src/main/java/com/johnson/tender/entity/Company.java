@@ -1,4 +1,4 @@
-package com.johnson.tender;
+package com.johnson.tender.entity;
 
 /**
  * Created by Johnson on 2017/4/30.
