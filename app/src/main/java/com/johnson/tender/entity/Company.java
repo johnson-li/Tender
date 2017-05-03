@@ -1,12 +1,19 @@
 package com.johnson.tender.entity;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
 /**
  * Created by Johnson on 2017/4/30.
  */
 
-public class Company {
+public class Company implements Serializable {
+  @SerializedName("ID")
   private long id;
+  @SerializedName("CompanyName")
   private String companyName;
+  @SerializedName("CompanyCode")
   private String companyCode;
   private String businessLicenseId;
   private String registerLocation;

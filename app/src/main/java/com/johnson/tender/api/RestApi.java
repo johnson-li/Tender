@@ -3,7 +3,7 @@ package com.johnson.tender.api;
 import com.johnson.tender.entity.Company;
 import com.johnson.tender.entity.ListResponse;
 
-import retrofit2.Call;
+import io.reactivex.Observable;
 import retrofit2.http.GET;
 
 /**
@@ -13,5 +13,5 @@ import retrofit2.http.GET;
 public interface RestApi {
 
   @GET("/company/all")
-  Call<ListResponse<Company>> getCompanies();
+  Observable<ListResponse<Company>> getCompanies();
 }

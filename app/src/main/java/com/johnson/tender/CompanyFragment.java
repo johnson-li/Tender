@@ -1,9 +1,9 @@
 package com.johnson.tender;
 
+import android.app.ProgressDialog;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -18,16 +18,15 @@ import com.johnson.tender.entity.ListResponse;
 
 import javax.inject.Inject;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Consumer;
 
 
 /**
  * Created by Johnson on 2017/4/30.
  */
 
-public class CompanyFragment extends Fragment {
+public class CompanyFragment extends BaseFragment {
   FragmentCompanyBinding binding;
   CompanyAdapter adapter = new CompanyAdapter();
 
@@ -49,19 +48,14 @@ public class CompanyFragment extends Fragment {
 
   @Override
   public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-    Call<ListResponse<Company>> call = restApi.getCompanies();
-    call.enqueue(new Callback<ListResponse<Company>>() {
+    ProgressDialog dialog = ProgressDialog.show(getContext(), "Loading", "Loading...", true, false);
+    subscribe(restApi.getCompanies(), new Consumer<ListResponse<Company>>() {
       @Override
-      public void onResponse(Call<ListResponse<Company>> call, Response<ListResponse<Company>> response) {
-        for (Company company : response.body().getContent()) {
+      public void accept(@NonNull ListResponse<Company> companyListResponse) throws Exception {
+        for (Company company : companyListResponse.getContent()) {
           adapter.add(company);
         }
       }
-
-      @Override
-      public void onFailure(Call<ListResponse<Company>> call, Throwable t) {
-        t.printStackTrace();
-      }
-    });
+    }, dialog);
   }
 }

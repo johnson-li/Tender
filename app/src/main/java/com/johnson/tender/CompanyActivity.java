@@ -8,6 +8,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.view.MenuItem;
 
 import com.johnson.tender.databinding.ActivityCompanyBinding;
+import com.johnson.tender.entity.Company;
 
 /**
  * Created by Johnson on 2017/5/2.
@@ -15,6 +16,7 @@ import com.johnson.tender.databinding.ActivityCompanyBinding;
 
 public class CompanyActivity extends AppCompatActivity {
   public static final String COMPANY_ID_ATTR = "company id";
+  public static final String COMPANY_ATTR = "company";
   ActivityCompanyBinding binding;
   AttributesAdapter adapter = new AttributesAdapter();
 
@@ -39,8 +41,13 @@ public class CompanyActivity extends AppCompatActivity {
     binding.attributes.setLayoutManager(layoutManager);
     binding.attributes.setAdapter(adapter);
 
-    adapter.add("1", "2");
-    adapter.add("3", "44444444444444444444444444444444444444444444444444444444");
+    if (getIntent().hasExtra(COMPANY_ATTR)) {
+      Company company = (Company) getIntent().getSerializableExtra(COMPANY_ATTR);
+      adapter.add(company);
+    } else if (getIntent().hasExtra(COMPANY_ID_ATTR)) {
+      adapter.add("1", "2");
+      adapter.add("3", "44444444444444444444444444444444444444444444444444444444");
+    }
   }
 
   @Override

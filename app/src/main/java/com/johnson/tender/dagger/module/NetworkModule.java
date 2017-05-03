@@ -2,7 +2,6 @@ package com.johnson.tender.dagger.module;
 
 import android.app.Application;
 
-import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.johnson.tender.api.RestApi;
@@ -13,7 +12,9 @@ import dagger.Module;
 import dagger.Provides;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -40,15 +41,18 @@ public class NetworkModule {
   @Singleton
   Gson provideGson() {
     GsonBuilder gsonBuilder = new GsonBuilder();
-    gsonBuilder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES);
     return gsonBuilder.create();
   }
 
+
   @Provides
   @Singleton
-  OkHttpClient provideOkhttpClient(Cache cache) {
+  OkHttpClient provideOkHttpClient(Cache cache) {
+    HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+    loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
     OkHttpClient.Builder client = new OkHttpClient.Builder();
     client.cache(cache);
+    client.addInterceptor(loggingInterceptor);
     return client.build();
   }
 
@@ -57,6 +61,7 @@ public class NetworkModule {
   Retrofit provideRetrofit(Gson gson, OkHttpClient okHttpClient) {
     return new Retrofit.Builder()
         .addConverterFactory(GsonConverterFactory.create(gson))
+        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .baseUrl(baseUrl)
         .client(okHttpClient)
         .build();

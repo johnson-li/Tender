@@ -19,7 +19,7 @@ import java.util.List;
 
 public class CompanyAdapter extends RecyclerView.Adapter<CompanyAdapter.ViewHolder> {
 
-  List<Company> companies = new ArrayList<>();
+  private List<Company> companies = new ArrayList<>();
 
   public void add(Company company) {
     companies.add(company);
@@ -34,12 +34,13 @@ public class CompanyAdapter extends RecyclerView.Adapter<CompanyAdapter.ViewHold
   }
 
   @Override
-  public void onBindViewHolder(final ViewHolder holder, final int position) {
+  public void onBindViewHolder(final ViewHolder holder, int position) {
+    holder.binding.name.setText(companies.get(position).getCompanyName());
     holder.binding.getRoot().setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         Intent intent = new Intent(holder.binding.getRoot().getContext(), CompanyActivity.class);
-        intent.putExtra(CompanyActivity.COMPANY_ID_ATTR, companies.get(position).getId());
+        intent.putExtra(CompanyActivity.COMPANY_ATTR, companies.get(holder.getAdapterPosition()));
         holder.binding.getRoot().getContext().startActivity(intent);
       }
     });

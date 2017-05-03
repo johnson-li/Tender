@@ -8,7 +8,7 @@ import java.util.List;
  * Created by Johnson on 2017/5/3.
  */
 
-public class ListResponse<T> {
+public class ListResponse<T> implements Response {
 
   List<T> content;
 
@@ -21,5 +21,10 @@ public class ListResponse<T> {
 
   public int getResponseCode() {
     return responseCode;
+  }
+
+  @Override
+  public boolean isSuccessful() {
+    return getResponseCode() == 1;
   }
 }

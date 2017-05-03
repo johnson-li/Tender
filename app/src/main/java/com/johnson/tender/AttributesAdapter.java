@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.johnson.tender.databinding.AttributeBinding;
+import com.johnson.tender.entity.Company;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,16 @@ import java.util.List;
 public class AttributesAdapter extends RecyclerView.Adapter<AttributesAdapter.ViewHolder> {
 
   private List<String> attributePairs = new ArrayList<>();
+
+  public void add(Company company) {
+    add("ID", company.getId());
+    add("CompanyName", company.getCompanyName());
+    add("CompanyCode", company.getCompanyCode());
+  }
+
+  public void add(String key, long val) {
+    add(key, String.valueOf(val));
+  }
 
   public void add(String key, String val) {
     attributePairs.add(key);
