@@ -4,6 +4,8 @@ import android.app.Application;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.johnson.tender.Preferences;
+import com.johnson.tender.api.LoginInterceptor;
 import com.johnson.tender.api.RestApi;
 
 import javax.inject.Singleton;
@@ -44,15 +46,21 @@ public class NetworkModule {
     return gsonBuilder.create();
   }
 
+  @Provides
+  @Singleton
+  LoginInterceptor provideLoginInterceptor(Preferences preferences) {
+    return new LoginInterceptor(preferences);
+  }
+
 
   @Provides
   @Singleton
-  OkHttpClient provideOkHttpClient(Cache cache) {
+  OkHttpClient provideOkHttpClient(Cache cache, LoginInterceptor loginInterceptor) {
     HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
     loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
     OkHttpClient.Builder client = new OkHttpClient.Builder();
     client.cache(cache);
-    client.addInterceptor(loggingInterceptor);
+    client.addInterceptor(loginInterceptor).addInterceptor(loggingInterceptor);
     return client.build();
   }
 

@@ -2,32 +2,23 @@ package com.johnson.tender.entity;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
 /**
- * Created by Johnson on 2017/5/3.
+ * Created by Johnson on 2017/5/4.
  */
 
-public class ListResponse<T> implements Response {
-
-  List<T> content;
-
+public class ObjectResponse<T> implements Response {
   @SerializedName("rc")
   int responseCode;
-
   String error;
+  T content;
 
-  public List<T> getContent() {
+  public T getContent() {
     return content;
-  }
-
-  public int getResponseCode() {
-    return responseCode;
   }
 
   @Override
   public boolean isSuccessful() {
-    return getResponseCode() == 1;
+    return responseCode == 1;
   }
 
   @Override

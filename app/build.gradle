@@ -20,6 +20,8 @@ android {
 
         debug {
             buildConfigField "String", "BASE_URL", '"http://192.168.56.1:5000"'
+            buildConfigField "String", "EMAIL", '"johnsonli1993@gmail.com"'
+            buildConfigField "String", "PASSWORD", '"123"'
         }
     }
 

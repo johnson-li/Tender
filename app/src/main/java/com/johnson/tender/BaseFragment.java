@@ -27,7 +27,7 @@ public class BaseFragment extends Fragment {
               dialog.dismiss();
             }
             if (!t.isSuccessful()) {
-              Toast.makeText(getContext(), "Server Error", Toast.LENGTH_SHORT).show();
+              Toast.makeText(getContext(), "Error: " + t.error(), Toast.LENGTH_SHORT).show();
             } else {
               consumer.accept(t);
             }

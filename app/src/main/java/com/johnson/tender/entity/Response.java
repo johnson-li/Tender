@@ -6,4 +6,6 @@ package com.johnson.tender.entity;
 
 public interface Response {
   boolean isSuccessful();
+
+  String error();
 }

@@ -30,6 +30,11 @@ public class CompanyAdapter extends RecyclerView.Adapter<CompanyAdapter.ViewHold
     notifyDataSetChanged();
   }
 
+  public void clear() {
+    companies.clear();
+    notifyDataSetChanged();
+  }
+
   public void add(Company company) {
     companies.add(company);
     notifyDataSetChanged();
