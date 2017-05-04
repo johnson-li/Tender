@@ -6,9 +6,7 @@ import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
@@ -37,9 +35,9 @@ public class MainActivity extends AppCompatActivity
 
   @Inject
   Preferences preferences;
-
   ActivityMainBinding binding;
   List<String> permissions = new ArrayList<>();
+  private SearchEngine searchEngine;
 
   {
     permissions.add(Manifest.permission.INTERNET);
@@ -52,15 +50,6 @@ public class MainActivity extends AppCompatActivity
     binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
-
-    FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-    fab.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-            .setAction("Action", null).show();
-      }
-    });
 
     DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
     ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -128,8 +117,8 @@ public class MainActivity extends AppCompatActivity
     return super.onPrepareOptionsMenu(menu);
   }
 
-  void search(String query) {
-
+  public void setSearchEngine(SearchEngine searchEngine) {
+    this.searchEngine = searchEngine;
   }
 
   @Override
@@ -140,7 +129,9 @@ public class MainActivity extends AppCompatActivity
     searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
       @Override
       public boolean onQueryTextSubmit(String query) {
-        search(query);
+        if (searchEngine != null) {
+          searchEngine.doSearch(query);
+        }
         return false;
       }
 

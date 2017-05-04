@@ -25,4 +25,26 @@
     <string name="company_detail_title">企业详情</string>
     <string name="staff_detail_title">员工详情</string>
     <string name="project_detail_title">项目详情</string>
+
+    <string name="confirm">确定</string>
+
+    <string name="company_search_title">企业搜索</string>
+    <string name="company_search_people">法人</string>
+    <string name="company_search_name">企业名称</string>
+    <string name="company_search_manager">董事</string>
+    <string name="company_search_address">联系方式</string>
+    <string name="company_search_constructor">建造师</string>
+    <string name="company_search_supervisor">监事</string>
+    <string name="company_search_executive">高管</string>
+
+    <string name="staff_search_title">人员搜索</string>
+    <string name="staff_search_name">姓名</string>
+    <string name="staff_search_registration_id">注册证号</string>
+    <string name="staff_search_id">身份证号</string>
+    <string name="staff_search_registration_company">注册单位</string>
+
+    <string name="project_search_title">项目搜索</string>
+    <string name="project_search_name">项目名称</string>
+    <string name="project_search_company">单位名称</string>
+    <string name="project_search_staff">项目人员</string>
 </resources>

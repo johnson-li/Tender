@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+        <android.support.design.widget.AppBarLayout android:id="@+id/appBarLayout"
+                                                    android:layout_width="match_parent"
+                                                    android:layout_height="wrap_content"
+                                                    android:theme="@style/AppTheme.AppBarOverlay">
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/AppTheme.PopupOverlay">
+
+            </android.support.v7.widget.Toolbar>
+        </android.support.design.widget.AppBarLayout>
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:layout_below="@+id/appBarLayout"
+                      android:orientation="vertical"
+                      android:paddingEnd="20dp"
+                      android:paddingStart="20dp"
+                      android:paddingTop="20dp">
+
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:orientation="horizontal">
+                <TextView style="@style/SearchAttribute"
+                          android:text="@string/staff_search_id"/>
+                <EditText android:id="@+id/id" android:layout_width="match_parent"
+                          android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:orientation="horizontal">
+                <TextView style="@style/SearchAttribute"
+                          android:text="@string/staff_search_name"/>
+                <EditText android:id="@+id/name" android:layout_width="match_parent"
+                          android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:orientation="horizontal">
+                <TextView style="@style/SearchAttribute"
+                          android:text="@string/staff_search_registration_company"/>
+                <EditText android:id="@+id/company" android:layout_width="match_parent"
+                          android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:orientation="horizontal">
+                <TextView style="@style/SearchAttribute"
+                          android:text="@string/staff_search_registration_id"/>
+                <EditText android:id="@+id/registrationId" android:layout_width="match_parent"
+                          android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:orientation="horizontal">
+                <TextView style="@style/SearchAttribute"
+                          android:text="@string/staff_search_title"/>
+                <EditText android:id="@+id/title" android:layout_width="match_parent"
+                          android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</layout>

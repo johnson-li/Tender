@@ -1,6 +1,7 @@
 package com.johnson.tender;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -26,7 +27,7 @@ import io.reactivex.functions.Consumer;
  * Created by Johnson on 2017/4/30.
  */
 
-public class CompanyFragment extends BaseFragment {
+public class CompanyFragment extends BaseFragment implements SearchEngine {
   FragmentCompanyBinding binding;
   CompanyAdapter adapter = new CompanyAdapter();
 
@@ -59,7 +60,19 @@ public class CompanyFragment extends BaseFragment {
         }
       }
     });
+    ((MainActivity) getActivity()).binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        Intent intent = new Intent(getContext(), CompanySearchActivity.class);
+        startActivity(intent);
+      }
+    });
     return binding.getRoot();
+  }
+
+  @Override
+  public void doSearch(String query) {
+
   }
 
   void loadMore(final boolean showDialog) {
@@ -92,6 +105,7 @@ public class CompanyFragment extends BaseFragment {
 
   @Override
   public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    ((MainActivity) getActivity()).setSearchEngine(this);
     loadMore(true);
   }
 }

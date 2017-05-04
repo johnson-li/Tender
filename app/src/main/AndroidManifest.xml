@@ -33,6 +33,15 @@
         <activity android:name=".ProjectActivity"
                   android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity android:name=".CompanySearchActivity"
+                  android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:name=".StaffSearchActivity"
+                  android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:name=".ProjectSearchActivity"
+                  android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

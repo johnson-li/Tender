@@ -1,5 +1,6 @@
 package com.johnson.tender;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -31,6 +32,13 @@ public class StaffFragment extends Fragment {
     RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
     binding.container.setLayoutManager(layoutManager);
     binding.container.setAdapter(adapter);
+    ((MainActivity) getActivity()).binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        Intent intent = new Intent(getContext(), StaffSearchActivity.class);
+        startActivity(intent);
+      }
+    });
     return binding.getRoot();
   }
 
