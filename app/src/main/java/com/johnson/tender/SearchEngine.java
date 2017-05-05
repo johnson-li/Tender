@@ -6,5 +6,5 @@ package com.johnson.tender;
 
 public interface SearchEngine {
 
-  public void doSearch(String query);
+  void doSearch(String query);
 }

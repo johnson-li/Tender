@@ -1,5 +1,6 @@
 package com.johnson.tender;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
@@ -17,6 +18,10 @@ import com.johnson.tender.databinding.FragmentCompanyBinding;
 import com.johnson.tender.entity.Company;
 import com.johnson.tender.entity.ListResponse;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import io.reactivex.annotations.NonNull;
@@ -28,9 +33,10 @@ import io.reactivex.functions.Consumer;
  */
 
 public class CompanyFragment extends BaseFragment implements SearchEngine {
+  private static final int SEARCH_CODE = 1;
   FragmentCompanyBinding binding;
   CompanyAdapter adapter = new CompanyAdapter();
-
+  Map<String, String> queries = new HashMap<>();
   @Inject
   RestApi restApi;
   boolean isLoading = false;
@@ -64,32 +70,61 @@ public class CompanyFragment extends BaseFragment implements SearchEngine {
       @Override
       public void onClick(View view) {
         Intent intent = new Intent(getContext(), CompanySearchActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent, SEARCH_CODE);
       }
     });
     return binding.getRoot();
   }
 
   @Override
-  public void doSearch(String query) {
-
+  public void onActivityResult(int requestCode, int resultCode, Intent data) {
+    switch (requestCode) {
+      case SEARCH_CODE:
+        if (resultCode == Activity.RESULT_OK) {
+          ((MainActivity) getActivity()).collapseSearch();
+          List<String> queries = data.getStringArrayListExtra(CompanySearchActivity.QUERY_ATTR);
+          Map<String, String> map = new HashMap<>();
+          for (int i = 0; i < queries.size(); ) {
+            map.put(queries.get(i++), queries.get(i++));
+          }
+          doSearch(map);
+        }
+    }
   }
 
-  void loadMore(final boolean showDialog) {
-    if (noMore) {
-      return;
-    }
+  void doSearch(Map<String, String> queries) {
+    this.queries = queries;
+    loadMore(true);
+  }
+
+  @Override
+  public void doSearch(String query) {
+    Map<String, String> map = new HashMap<>();
+    map.put("name", query);
+    doSearch(map);
+  }
+
+  void loadMore(final boolean init) {
     ProgressDialog dialog = null;
     int offset = adapter.getSize();
-    if (showDialog) {
+    if (init) {
+      adapter.clear();
+      noMore = false;
       dialog = ProgressDialog.show(getContext(), "Loading", "Loading...", true, false);
+    } else if (noMore) {
+      return;
     } else {
       adapter.add(null);
     }
-    subscribe(restApi.getCompanies(offset, pageSize), new Consumer<ListResponse<Company>>() {
+    subscribe(restApi.queryCompanies(queries, offset, pageSize), new Consumer<ListResponse<Company>>() {
       @Override
       public void accept(@NonNull ListResponse<Company> companyListResponse) throws Exception {
-        if (!showDialog) {
+        if (init && companyListResponse.getContent().isEmpty()) {
+          binding.noContent.setVisibility(View.VISIBLE);
+        } else {
+          binding.noContent.setVisibility(View.GONE);
+        }
+        if (!init) {
           adapter.removeLast();
           isLoading = false;
         }

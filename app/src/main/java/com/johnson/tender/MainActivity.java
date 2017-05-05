@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity
   ActivityMainBinding binding;
   List<String> permissions = new ArrayList<>();
   private SearchEngine searchEngine;
+  private Menu menu;
 
   {
     permissions.add(Manifest.permission.INTERNET);
@@ -121,6 +122,13 @@ public class MainActivity extends AppCompatActivity
     this.searchEngine = searchEngine;
   }
 
+  public void collapseSearch() {
+    MenuItem menuItem = menu.getItem(0);
+    if (menuItem != null) {
+      menuItem.collapseActionView();
+    }
+  }
+
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     // Inflate the menu; this adds items to the action bar if it is present.
@@ -140,6 +148,7 @@ public class MainActivity extends AppCompatActivity
         return false;
       }
     });
+    this.menu = menu;
     return true;
   }
 
