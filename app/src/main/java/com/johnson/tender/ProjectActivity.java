@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
+import android.view.MenuItem;
 
 import com.johnson.tender.databinding.ActivityProjectBinding;
 
@@ -14,6 +15,7 @@ import com.johnson.tender.databinding.ActivityProjectBinding;
 
 public class ProjectActivity extends AppCompatActivity {
   public static final String PROJECT_ID_ATTR = "project id";
+  public static final String PROJECT_ATTR = "project";
   ActivityProjectBinding binding;
   AttributesAdapter adapter = new AttributesAdapter();
 
@@ -41,5 +43,14 @@ public class ProjectActivity extends AppCompatActivity {
     for (int i = 0; i < 10; i++) {
       adapter.add("key" + i, "val" + i);
     }
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+      case android.R.id.home:
+        finish();
+    }
+    return super.onOptionsItemSelected(item);
   }
 }

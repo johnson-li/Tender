@@ -1,46 +1,56 @@
 package com.johnson.tender;
 
-import android.databinding.DataBindingUtil;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 
 import com.johnson.tender.databinding.ActivityProjectSearchBinding;
+
+import java.util.ArrayList;
 
 /**
  * Created by Johnson on 2017/5/4.
  */
 
-public class ProjectSearchActivity extends BaseActivity {
-  ActivityProjectSearchBinding binding;
+public class ProjectSearchActivity extends SearchActivity<ActivityProjectSearchBinding> {
 
   @Override
-  protected void onCreate(@Nullable Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    binding = DataBindingUtil.setContentView(this, R.layout.activity_project_search);
-
-    setSupportActionBar(binding.toolbar);
-    getSupportActionBar().setTitle(R.string.project_search_title);
-    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    getSupportActionBar().setDisplayShowHomeEnabled(true);
-  }
-
-
-  @Override
-  public boolean onCreateOptionsMenu(Menu menu) {
-    getMenuInflater().inflate(R.menu.search, menu);
-    return true;
+  int getLayoutId() {
+    return R.layout.activity_project_search;
   }
 
   @Override
-  public boolean onOptionsItemSelected(MenuItem item) {
-    switch (item.getItemId()) {
-      case android.R.id.home:
-        finish();
-      case R.id.confirm:
-        finish();
+  int getTitleId() {
+    return R.string.project_search_title;
+  }
+
+  @Override
+  Toolbar getToolbar() {
+    return binding.toolbar;
+  }
+
+  @Override
+  ArrayList<String> getQueries() {
+    ArrayList<String> list = new ArrayList<>();
+    String name = binding.name.getText().toString();
+    String company = binding.company.getText().toString();
+    String staff = binding.staff.getText().toString();
+    String title = binding.title.getText().toString();
+    if (!TextUtils.isEmpty(name)) {
+      list.add("name");
+      list.add(name);
     }
-    return super.onOptionsItemSelected(item);
+    if (!TextUtils.isEmpty(company)) {
+      list.add("company");
+      list.add(company);
+    }
+    if (!TextUtils.isEmpty(staff)) {
+      list.add("staff");
+      list.add(staff);
+    }
+    if (!TextUtils.isEmpty(title)) {
+      list.add("title");
+      list.add(title);
+    }
+    return list;
   }
 }

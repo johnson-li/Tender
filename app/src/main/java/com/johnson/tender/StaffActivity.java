@@ -15,6 +15,7 @@ import com.johnson.tender.databinding.ActivityStaffBinding;
 
 public class StaffActivity extends AppCompatActivity {
   public static final String STAFF_ID_ATTR = "staff id";
+  public static final String STAFF_ATTR = "staff";
   ActivityStaffBinding binding;
   AttributesAdapter adapter = new AttributesAdapter();
 

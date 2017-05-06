@@ -1,53 +1,76 @@
 package com.johnson.tender;
 
-import android.content.Intent;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.johnson.tender.api.RestApi;
 import com.johnson.tender.databinding.FragmentStaffBinding;
+import com.johnson.tender.databinding.StaffBinding;
+import com.johnson.tender.entity.ListResponse;
 import com.johnson.tender.entity.Staff;
+
+import java.util.Map;
+
+import javax.inject.Inject;
+
+import io.reactivex.Observable;
 
 /**
  * Created by Johnson on 2017/5/2.
  */
 
-public class StaffFragment extends Fragment {
-  FragmentStaffBinding binding;
-  StaffAdapter adapter = new StaffAdapter();
+public class StaffFragment extends ListFragment<FragmentStaffBinding, StaffBinding, Staff> {
+  @Inject
+  RestApi restApi;
+
+  @Override
+  int getLayoutId() {
+    return R.layout.fragment_staff;
+  }
+
+  @Override
+  int getTitleId() {
+    return R.string.navigation_drawer_staff;
+  }
+
+  @Override
+  RecyclerView getContainer() {
+    return binding.container;
+  }
+
+  @Override
+  Class getSearchActivityClass() {
+    return StaffSearchActivity.class;
+  }
 
   @Nullable
   @Override
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-    binding = DataBindingUtil.inflate(inflater, R.layout.fragment_staff, container, false);
-    ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.navigation_drawer_staff);
-    binding.container.setHasFixedSize(true);
-    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
-    binding.container.setLayoutManager(layoutManager);
-    binding.container.setAdapter(adapter);
-    ((MainActivity) getActivity()).binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        Intent intent = new Intent(getContext(), StaffSearchActivity.class);
-        startActivity(intent);
-      }
-    });
-    return binding.getRoot();
+    ((App) getActivity().getApplication()).getNetworkComponent().inject(this);
+    return super.onCreateView(inflater, container, savedInstanceState);
   }
 
   @Override
-  public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-    for (int i = 0; i < 10; i++) {
-      Staff staff = new Staff();
-      staff.setName("staff" + i);
-      adapter.add(staff);
-    }
+  String getMainKey() {
+    return "name";
+  }
+
+  @Override
+  AbstractAdapter<StaffBinding, Staff> generateAdapter() {
+    return new StaffAdapter();
+  }
+
+  @Override
+  View getNoContent() {
+    return binding.noContent;
+  }
+
+  @Override
+  Observable<ListResponse<Staff>> observeQuery(Map<String, String> queries, int offset, int pageSize) {
+    return restApi.queryStaff(queries, offset, pageSize);
   }
 }

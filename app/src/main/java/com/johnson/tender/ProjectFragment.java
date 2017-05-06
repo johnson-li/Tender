@@ -1,53 +1,76 @@
 package com.johnson.tender;
 
-import android.content.Intent;
-import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.johnson.tender.api.RestApi;
 import com.johnson.tender.databinding.FragmentProjectBinding;
+import com.johnson.tender.databinding.ProjectBinding;
+import com.johnson.tender.entity.ListResponse;
 import com.johnson.tender.entity.Project;
+
+import java.util.Map;
+
+import javax.inject.Inject;
+
+import io.reactivex.Observable;
 
 /**
  * Created by Johnson on 2017/5/2.
  */
 
-public class ProjectFragment extends Fragment {
-  FragmentProjectBinding binding;
-  ProjectAdapter adapter = new ProjectAdapter();
+public class ProjectFragment extends ListFragment<FragmentProjectBinding, ProjectBinding, Project> {
+  @Inject
+  RestApi restApi;
 
   @Nullable
   @Override
   public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-    binding = DataBindingUtil.inflate(inflater, R.layout.fragment_project, container, false);
-    ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(R.string.navigation_drawer_projects);
-    binding.container.setHasFixedSize(true);
-    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
-    binding.container.setLayoutManager(layoutManager);
-    binding.container.setAdapter(adapter);
-    ((MainActivity) getActivity()).binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View view) {
-        Intent intent = new Intent(getContext(), ProjectSearchActivity.class);
-        startActivity(intent);
-      }
-    });
-    return binding.getRoot();
+    ((App) getActivity().getApplication()).getNetworkComponent().inject(this);
+    return super.onCreateView(inflater, container, savedInstanceState);
   }
 
   @Override
-  public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-    for (int i = 0; i < 10; i++) {
-      Project project = new Project();
-      project.setName("project" + i);
-      adapter.add(project);
-    }
+  int getLayoutId() {
+    return R.layout.fragment_project;
+  }
+
+  @Override
+  int getTitleId() {
+    return R.string.navigation_drawer_projects;
+  }
+
+  @Override
+  RecyclerView getContainer() {
+    return binding.container;
+  }
+
+  @Override
+  Class getSearchActivityClass() {
+    return ProjectSearchActivity.class;
+  }
+
+  @Override
+  String getMainKey() {
+    return "name";
+  }
+
+  @Override
+  AbstractAdapter<ProjectBinding, Project> generateAdapter() {
+    return new ProjectAdapter();
+  }
+
+  @Override
+  View getNoContent() {
+    return binding.noContent;
+  }
+
+  @Override
+  Observable<ListResponse<Project>> observeQuery(Map<String, String> queries, int offset, int pageSize) {
+    return restApi.queryProject(queries, offset, pageSize);
   }
 }
