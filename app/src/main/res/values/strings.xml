@@ -48,4 +48,10 @@
     <string name="project_search_name">项目名称</string>
     <string name="project_search_company">单位名称</string>
     <string name="project_search_staff">项目人员</string>
+
+    <string name="detail_filter">筛选条件</string>
+    <string name="detail_order">排序</string>
+    <string name="detail_order_ascending">升序</string>
+    <string name="detail_order_descending">降序</string>
+    <string name="detail_order_none">无序</string>
 </resources>

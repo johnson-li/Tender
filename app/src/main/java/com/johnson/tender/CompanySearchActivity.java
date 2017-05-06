@@ -1,17 +1,58 @@
 package com.johnson.tender;
 
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 
 import com.johnson.tender.databinding.ActivityCompanySearchBinding;
+import com.johnson.tender.view.DragItem;
+import com.johnson.tender.view.DragListView;
+import com.johnson.tender.view.ListSwipeHelper;
+import com.johnson.tender.view.ListSwipeItem;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Johnson on 2017/5/4.
  */
 
 public class CompanySearchActivity extends SearchActivity<ActivityCompanySearchBinding> {
+  @Override
+  protected void onCreate(@Nullable Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    binding.dragListView.setDragListListener(new DragListView.DragListListener() {
+      @Override
+      public void onItemDragStarted(int position) {
+      }
+
+      @Override
+      public void onItemDragging(int itemPosition, float x, float y) {
+
+      }
+
+      @Override
+      public void onItemDragEnded(int fromPosition, int toPosition) {
+      }
+    });
+    binding.dragListView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+    List<String> data = new ArrayList<>();
+    data.add("d1");
+    data.add("d2");
+    binding.dragListView.setAdapter(new BoxDrapItemAdapter(data), true);
+    binding.dragListView.setCanDragHorizontally(false);
+    binding.dragListView.setSwipeListener(new ListSwipeHelper.OnSwipeListenerAdapter() {
+
+      @Override
+      public void onItemSwipeEnded(ListSwipeItem item, ListSwipeItem.SwipeDirection swipedDirection) {
+      }
+    });
+    binding.dragListView.setDragEnabled(true);
+    binding.dragListView.setCustomDragItem(new DragItem(getApplicationContext(), R.layout.order_check_box));
+  }
+
   @Override
   int getLayoutId() {
     return R.layout.activity_company_search;
