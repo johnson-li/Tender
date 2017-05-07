@@ -1,16 +1,11 @@
 package com.johnson.tender;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v4.util.Pair;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 
 import com.johnson.tender.databinding.ActivityCompanySearchBinding;
-import com.johnson.tender.view.DragItem;
 import com.johnson.tender.view.DragListView;
-import com.johnson.tender.view.ListSwipeHelper;
-import com.johnson.tender.view.ListSwipeItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,36 +16,16 @@ import java.util.List;
 
 public class CompanySearchActivity extends SearchActivity<ActivityCompanySearchBinding> {
   @Override
-  protected void onCreate(@Nullable Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-    binding.dragListView.setDragListListener(new DragListView.DragListListener() {
-      @Override
-      public void onItemDragStarted(int position) {
-      }
+  List<Pair<String, Integer>> getAvailableOrders() {
+    List<Pair<String, Integer>> list = new ArrayList<>();
+    list.add(new Pair<>("name", R.string.company_search_name));
+    list.add(new Pair<>("address", R.string.company_search_address));
+    return list;
+  }
 
-      @Override
-      public void onItemDragging(int itemPosition, float x, float y) {
-
-      }
-
-      @Override
-      public void onItemDragEnded(int fromPosition, int toPosition) {
-      }
-    });
-    binding.dragListView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-    List<String> data = new ArrayList<>();
-    data.add("d1");
-    data.add("d2");
-    binding.dragListView.setAdapter(new BoxDrapItemAdapter(data), true);
-    binding.dragListView.setCanDragHorizontally(false);
-    binding.dragListView.setSwipeListener(new ListSwipeHelper.OnSwipeListenerAdapter() {
-
-      @Override
-      public void onItemSwipeEnded(ListSwipeItem item, ListSwipeItem.SwipeDirection swipedDirection) {
-      }
-    });
-    binding.dragListView.setDragEnabled(true);
-    binding.dragListView.setCustomDragItem(new DragItem(getApplicationContext(), R.layout.order_check_box));
+  @Override
+  DragListView getDragListView() {
+    return binding.dragListView;
   }
 
   @Override

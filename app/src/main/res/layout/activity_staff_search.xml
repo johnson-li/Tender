@@ -26,45 +26,73 @@
                       android:paddingStart="20dp"
                       android:paddingTop="20dp">
 
+            <TextView android:id="@+id/textView" android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="@string/detail_filter" android:textSize="18sp"/>
+
             <LinearLayout android:layout_width="match_parent"
                           android:layout_height="wrap_content"
-                          android:orientation="horizontal">
-                <TextView style="@style/SearchAttribute"
-                          android:text="@string/staff_search_id"/>
-                <EditText android:id="@+id/id" android:layout_width="match_parent"
-                          android:layout_height="wrap_content"/>
+                          android:orientation="vertical"
+                          android:paddingEnd="10dp"
+                          android:paddingStart="10dp">
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:orientation="horizontal">
+                    <TextView style="@style/SearchAttribute"
+                              android:text="@string/staff_search_id"/>
+                    <EditText android:id="@+id/id" android:layout_width="match_parent"
+                              android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:orientation="horizontal">
+                    <TextView style="@style/SearchAttribute"
+                              android:text="@string/staff_search_name"/>
+                    <EditText android:id="@+id/name" android:layout_width="match_parent"
+                              android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:orientation="horizontal">
+                    <TextView style="@style/SearchAttribute"
+                              android:text="@string/staff_search_registration_company"/>
+                    <EditText android:id="@+id/company" android:layout_width="match_parent"
+                              android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:orientation="horizontal">
+                    <TextView style="@style/SearchAttribute"
+                              android:text="@string/staff_search_registration_id"/>
+                    <EditText android:id="@+id/registrationId" android:layout_width="match_parent"
+                              android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent"
+                              android:layout_height="wrap_content"
+                              android:orientation="horizontal">
+                    <TextView style="@style/SearchAttribute"
+                              android:text="@string/staff_search_title"/>
+                    <EditText android:id="@+id/title" android:layout_width="match_parent"
+                              android:layout_height="wrap_content"/>
+                </LinearLayout>
             </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:layout_marginTop="20dp"
+                android:text="@string/detail_order"
+                android:textSize="18sp"/>
+
             <LinearLayout android:layout_width="match_parent"
                           android:layout_height="wrap_content"
-                          android:orientation="horizontal">
-                <TextView style="@style/SearchAttribute"
-                          android:text="@string/staff_search_name"/>
-                <EditText android:id="@+id/name" android:layout_width="match_parent"
-                          android:layout_height="wrap_content"/>
-            </LinearLayout>
-            <LinearLayout android:layout_width="match_parent"
-                          android:layout_height="wrap_content"
-                          android:orientation="horizontal">
-                <TextView style="@style/SearchAttribute"
-                          android:text="@string/staff_search_registration_company"/>
-                <EditText android:id="@+id/company" android:layout_width="match_parent"
-                          android:layout_height="wrap_content"/>
-            </LinearLayout>
-            <LinearLayout android:layout_width="match_parent"
-                          android:layout_height="wrap_content"
-                          android:orientation="horizontal">
-                <TextView style="@style/SearchAttribute"
-                          android:text="@string/staff_search_registration_id"/>
-                <EditText android:id="@+id/registrationId" android:layout_width="match_parent"
-                          android:layout_height="wrap_content"/>
-            </LinearLayout>
-            <LinearLayout android:layout_width="match_parent"
-                          android:layout_height="wrap_content"
-                          android:orientation="horizontal">
-                <TextView style="@style/SearchAttribute"
-                          android:text="@string/staff_search_title"/>
-                <EditText android:id="@+id/title" android:layout_width="match_parent"
-                          android:layout_height="wrap_content"/>
+                          android:orientation="vertical"
+                          android:paddingEnd="10dp"
+                          android:paddingStart="10dp">
+                <com.johnson.tender.view.DragListView
+                    android:id="@+id/dragListView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                </com.johnson.tender.view.DragListView>
             </LinearLayout>
         </LinearLayout>
     </RelativeLayout>

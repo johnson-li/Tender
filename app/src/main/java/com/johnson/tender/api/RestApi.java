@@ -26,16 +26,19 @@ public interface RestApi {
 
   @GET("/company/query")
   Observable<ListResponse<Company>> queryCompanies(@QueryMap Map<String, String> queries,
+                                                   @Query("orders") String orders,
                                                    @Query("offset") int offset,
                                                    @Query("page_size") int pageSize);
 
   @GET("/staff/query")
   Observable<ListResponse<Staff>> queryStaff(@QueryMap Map<String, String> queries,
+                                             @Query("orders") String orders,
                                              @Query("offset") int offset,
                                              @Query("page_size") int pageSize);
 
   @GET("/project/query")
   Observable<ListResponse<Project>> queryProject(@QueryMap Map<String, String> queries,
+                                                 @Query("orders") String orders,
                                                  @Query("offset") int offset,
                                                  @Query("page_size") int pageSize);
 

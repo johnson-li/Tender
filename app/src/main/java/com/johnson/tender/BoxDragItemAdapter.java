@@ -1,5 +1,6 @@
 package com.johnson.tender;
 
+import android.support.v4.util.Pair;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -12,8 +13,8 @@ import java.util.List;
  * Created by Johnson on 2017/5/7.
  */
 
-public class BoxDrapItemAdapter extends DragItemAdapter<String, BoxDrapItemAdapter.ViewHolder> {
-  public BoxDrapItemAdapter(List<String> data) {
+public class BoxDragItemAdapter extends DragItemAdapter<Pair<String, Integer>, BoxDragItemAdapter.ViewHolder> {
+  public BoxDragItemAdapter(List<Pair<String, Integer>> data) {
     setHasStableIds(true);
     setItemList(data);
   }
@@ -32,7 +33,7 @@ public class BoxDrapItemAdapter extends DragItemAdapter<String, BoxDrapItemAdapt
   @Override
   public void onBindViewHolder(ViewHolder holder, int position) {
     super.onBindViewHolder(holder, position);
-    holder.binding.box.setText(mItemList.get(position));
+    holder.binding.box.setText(mItemList.get(position).second);
   }
 
   class ViewHolder extends DragItemAdapter.ViewHolder {

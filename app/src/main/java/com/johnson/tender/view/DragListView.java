@@ -272,7 +272,7 @@ public class DragListView extends FrameLayout {
     boolean canDropItemAtPosition(int dropPosition);
   }
 
-  public static abstract class DragListListenerAdapter implements DragListListener {
+  public static class DragListListenerAdapter implements DragListListener {
     @Override
     public void onItemDragStarted(int position) {
     }
@@ -286,7 +286,7 @@ public class DragListView extends FrameLayout {
     }
   }
 
-  public static abstract class DragListCallbackAdapter implements DragListCallback {
+  public static class DragListCallbackAdapter implements DragListCallback {
     @Override
     public boolean canDragItemAtPosition(int dragPosition) {
       return true;

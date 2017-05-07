@@ -16,6 +16,8 @@ import android.view.ViewGroup;
 
 import com.johnson.tender.entity.ListResponse;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +37,7 @@ public abstract class ListFragment<B extends ViewDataBinding, T extends ViewData
   boolean isLoading = false;
   boolean noMore = false;
   Map<String, String> queries = new HashMap<>();
+  String orders;
   B binding;
   private int visibleThreshold = 1;
   private int pageSize = 10;
@@ -88,7 +91,8 @@ public abstract class ListFragment<B extends ViewDataBinding, T extends ViewData
           for (int i = 0; i < queries.size(); ) {
             map.put(queries.get(i++), queries.get(i++));
           }
-          doSearch(map);
+          List<String> orders = data.getStringArrayListExtra(SearchActivity.ORDER_ATTR);
+          doSearch(map, StringUtils.join(orders, ","));
         }
     }
   }
@@ -99,11 +103,12 @@ public abstract class ListFragment<B extends ViewDataBinding, T extends ViewData
   public void doSearch(String query) {
     Map<String, String> map = new HashMap<>();
     map.put(getMainKey(), query);
-    doSearch(map);
+    doSearch(map, "");
   }
 
-  void doSearch(Map<String, String> queries) {
+  void doSearch(Map<String, String> queries, String orders) {
     this.queries = queries;
+    this.orders = orders;
     loadMore(true);
   }
 
@@ -111,7 +116,7 @@ public abstract class ListFragment<B extends ViewDataBinding, T extends ViewData
 
   abstract View getNoContent();
 
-  abstract Observable<ListResponse<M>> observeQuery(Map<String, String> queries, int offset, int pageSize);
+  abstract Observable<ListResponse<M>> observeQuery(Map<String, String> queries, String orders, int offset, int pageSize);
 
   void loadMore(final boolean init) {
     if (isLoading) {
@@ -129,7 +134,7 @@ public abstract class ListFragment<B extends ViewDataBinding, T extends ViewData
       adapter.add(null);
     }
     int offset = adapter.getSize();
-    subscribe(observeQuery(queries, offset, pageSize), new Consumer<ListResponse<M>>() {
+    subscribe(observeQuery(queries, orders, offset, pageSize), new Consumer<ListResponse<M>>() {
       @Override
       public void accept(@NonNull ListResponse<M> listResponse) throws Exception {
         if (init && listResponse.getContent().isEmpty()) {

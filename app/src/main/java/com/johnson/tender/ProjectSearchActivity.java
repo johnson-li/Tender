@@ -1,17 +1,31 @@
 package com.johnson.tender;
 
+import android.support.v4.util.Pair;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 
 import com.johnson.tender.databinding.ActivityProjectSearchBinding;
+import com.johnson.tender.view.DragListView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Johnson on 2017/5/4.
  */
 
 public class ProjectSearchActivity extends SearchActivity<ActivityProjectSearchBinding> {
+  @Override
+  List<Pair<String, Integer>> getAvailableOrders() {
+    List<Pair<String, Integer>> list = new ArrayList<>();
+    list.add(new Pair<>("name", R.string.project_search_name));
+    return list;
+  }
+
+  @Override
+  DragListView getDragListView() {
+    return binding.dragListView;
+  }
 
   @Override
   int getLayoutId() {

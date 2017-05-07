@@ -71,7 +71,8 @@ public class CompanyFragment extends ListFragment<FragmentCompanyBinding, Compan
   }
 
   @Override
-  Observable<ListResponse<Company>> observeQuery(Map<String, String> queries, int offset, int pageSize) {
-    return restApi.queryCompanies(queries, offset, pageSize);
+  Observable<ListResponse<Company>> observeQuery(Map<String, String> queries,
+                                                 String orders, int offset, int pageSize) {
+    return restApi.queryCompanies(queries, orders, offset, pageSize);
   }
 }

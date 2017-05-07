@@ -124,7 +124,6 @@ public abstract class DragItemAdapter<T, VH extends DragItemAdapter.ViewHolder> 
     public ViewHolder(final View itemView, int handleResId, boolean dragOnLongPress) {
       super(itemView);
       mGrabView = itemView.findViewById(handleResId);
-      mGrabView = itemView;
 
       if (dragOnLongPress) {
         mGrabView.setOnLongClickListener(new View.OnLongClickListener() {

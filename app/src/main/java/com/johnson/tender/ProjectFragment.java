@@ -70,7 +70,7 @@ public class ProjectFragment extends ListFragment<FragmentProjectBinding, Projec
   }
 
   @Override
-  Observable<ListResponse<Project>> observeQuery(Map<String, String> queries, int offset, int pageSize) {
-    return restApi.queryProject(queries, offset, pageSize);
+  Observable<ListResponse<Project>> observeQuery(Map<String, String> queries, String orders, int offset, int pageSize) {
+    return restApi.queryProject(queries, orders, offset, pageSize);
   }
 }

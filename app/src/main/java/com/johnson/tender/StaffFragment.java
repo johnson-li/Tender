@@ -70,7 +70,7 @@ public class StaffFragment extends ListFragment<FragmentStaffBinding, StaffBindi
   }
 
   @Override
-  Observable<ListResponse<Staff>> observeQuery(Map<String, String> queries, int offset, int pageSize) {
-    return restApi.queryStaff(queries, offset, pageSize);
+  Observable<ListResponse<Staff>> observeQuery(Map<String, String> queries, String orders, int offset, int pageSize) {
+    return restApi.queryStaff(queries, orders, offset, pageSize);
   }
 }
