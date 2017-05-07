@@ -41,18 +41,35 @@ public class AttributesAdapter extends RecyclerView.Adapter<AttributesAdapter.Vi
     add(R.string.staff_detail_identification, staff.getIdentityId());
     add(R.string.staff_detail_gender, staff.getGender());
     add(R.string.staff_detail_type, staff.getRegisterType());
+    add(R.string.staff_detail_level, staff.getLevel());
+    add(R.string.staff_detail_specialty, staff.getSpecialty());
+    add(R.string.staff_detail_seal_id, staff.getSealId());
+    add(R.string.staff_detail_seal_register_date, staff.getRegisterDate());
+    add(R.string.staff_detail_expire_date, staff.getExpireDate());
+    add(R.string.staff_detail_status, staff.getStatus());
   }
 
   public void add(Project project) {
     add(R.string.project_detail_id, project.getId());
     add(R.string.project_detail_name, project.getName());
     add(R.string.project_detail_location, project.getLocation());
+    add(R.string.project_detail_customer_organization, project.getCustomerOrganization());
+    add(R.string.project_detail_project_number, project.getProjectNumber());
+    add(R.string.project_detail_type, project.getProjectType());
   }
 
   public void add(Company company) {
     add(R.string.company_detail_id, company.getId());
     add(R.string.company_detail_name, company.getCompanyName());
     add(R.string.company_detail_code, company.getCompanyCode());
+    add(R.string.company_detail_register_location, company.getRegisterLocation());
+    add(R.string.company_detail_operating_location, company.getOperatingLocation());
+    add(R.string.company_detail_people, company.getLegalRepresentative());
+    add(R.string.company_detail_type, company.getCompanyType());
+    add(R.string.company_detail_capital, company.getRegisteredCapital());
+    add(R.string.company_detail_cert_id, company.getCertId());
+    add(R.string.company_detail_security_cert_id, company.getSecurityCertId());
+    add(R.string.company_detail_cert_expire, company.getCertExpire());
   }
 
   public void add(@StringRes int id, long val) {

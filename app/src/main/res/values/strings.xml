@@ -41,6 +41,15 @@
     <string name="company_detail_id">ID</string>
     <string name="company_detail_name">企业名称</string>
     <string name="company_detail_code">代码</string>
+    <string name="company_detail_license">证书</string>
+    <string name="company_detail_register_location">注册地点</string>
+    <string name="company_detail_operating_location">工作地点</string>
+    <string name="company_detail_people">法人</string>
+    <string name="company_detail_type">类型</string>
+    <string name="company_detail_cert_id">证书ID</string>
+    <string name="company_detail_security_cert_id">安全证书ID</string>
+    <string name="company_detail_cert_expire">有效期</string>
+    <string name="company_detail_capital">注册资金</string>
 
     <string name="staff_search_title">人员搜索</string>
     <string name="staff_search_name">姓名</string>
@@ -53,6 +62,12 @@
     <string name="staff_detail_identification">身份证号</string>
     <string name="staff_detail_gender">性别</string>
     <string name="staff_detail_type">类别</string>
+    <string name="staff_detail_level">级别</string>
+    <string name="staff_detail_specialty">技能</string>
+    <string name="staff_detail_seal_id">印章ID</string>
+    <string name="staff_detail_seal_register_date">注册日期</string>
+    <string name="staff_detail_expire_date">有效期</string>
+    <string name="staff_detail_status">状态</string>
 
     <string name="project_search_title">项目搜索</string>
     <string name="project_search_name">项目名称</string>
@@ -62,6 +77,9 @@
     <string name="project_detail_id">ID</string>
     <string name="project_detail_name">项目名称</string>
     <string name="project_detail_location">项目地点</string>
+    <string name="project_detail_customer_organization">客户组织</string>
+    <string name="project_detail_project_number">项目代码</string>
+    <string name="project_detail_type">项目类型</string>
 
     <string name="detail_filter">筛选条件</string>
     <string name="detail_order">排序</string>

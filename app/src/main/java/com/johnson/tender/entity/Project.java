@@ -33,6 +33,12 @@ public class Project implements Serializable {
   String subContract;
   @SerializedName("ProjectNumber")
   String projectNumber;
+  @SerializedName("ProjectType")
+  String projectType;
+
+  public String getProjectType() {
+    return projectType;
+  }
 
   public long getId() {
     return id;
