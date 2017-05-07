@@ -41,7 +41,8 @@
                               android:orientation="horizontal">
                     <TextView style="@style/SearchAttribute"
                               android:text="@string/company_search_name"/>
-                    <EditText android:id="@+id/name" android:layout_width="match_parent"
+                    <EditText android:id="@+id/name" style="@style/SearchActivityEditTextStyle"
+                              android:layout_width="match_parent"
                               android:layout_height="wrap_content"/>
                 </LinearLayout>
                 <LinearLayout android:layout_width="match_parent"
@@ -49,7 +50,8 @@
                               android:orientation="horizontal">
                     <TextView style="@style/SearchAttribute"
                               android:text="@string/company_search_people"/>
-                    <EditText android:id="@+id/people" android:layout_width="match_parent"
+                    <EditText android:id="@+id/people" style="@style/SearchActivityEditTextStyle"
+                              android:layout_width="match_parent"
                               android:layout_height="wrap_content"/>
                 </LinearLayout>
                 <LinearLayout android:layout_width="match_parent"
@@ -57,7 +59,8 @@
                               android:orientation="horizontal">
                     <TextView style="@style/SearchAttribute"
                               android:text="@string/company_search_manager"/>
-                    <EditText android:id="@+id/manager" android:layout_width="match_parent"
+                    <EditText android:id="@+id/manager" style="@style/SearchActivityEditTextStyle"
+                              android:layout_width="match_parent"
                               android:layout_height="wrap_content"/>
                 </LinearLayout>
                 <LinearLayout android:layout_width="match_parent"
@@ -65,7 +68,9 @@
                               android:orientation="horizontal">
                     <TextView style="@style/SearchAttribute"
                               android:text="@string/company_search_supervisor"/>
-                    <EditText android:id="@+id/supervisor" android:layout_width="match_parent"
+                    <EditText android:id="@+id/supervisor"
+                              style="@style/SearchActivityEditTextStyle"
+                              android:layout_width="match_parent"
                               android:layout_height="wrap_content"/>
                 </LinearLayout>
                 <LinearLayout android:layout_width="match_parent"
@@ -73,7 +78,8 @@
                               android:orientation="horizontal">
                     <TextView style="@style/SearchAttribute"
                               android:text="@string/company_search_executive"/>
-                    <EditText android:id="@+id/executive" android:layout_width="match_parent"
+                    <EditText android:id="@+id/executive" style="@style/SearchActivityEditTextStyle"
+                              android:layout_width="match_parent"
                               android:layout_height="wrap_content"/>
                 </LinearLayout>
                 <LinearLayout android:layout_width="match_parent"
@@ -81,7 +87,9 @@
                               android:orientation="horizontal">
                     <TextView style="@style/SearchAttribute"
                               android:text="@string/company_search_constructor"/>
-                    <EditText android:id="@+id/constructor" android:layout_width="match_parent"
+                    <EditText android:id="@+id/constructor"
+                              style="@style/SearchActivityEditTextStyle"
+                              android:layout_width="match_parent"
                               android:layout_height="wrap_content"/>
                 </LinearLayout>
                 <LinearLayout android:layout_width="match_parent"
@@ -89,7 +97,8 @@
                               android:orientation="horizontal">
                     <TextView style="@style/SearchAttribute"
                               android:text="@string/company_search_address"/>
-                    <EditText android:id="@+id/address" android:layout_width="match_parent"
+                    <EditText android:id="@+id/address" style="@style/SearchActivityEditTextStyle"
+                              android:layout_width="match_parent"
                               android:layout_height="wrap_content"/>
                 </LinearLayout>
             </LinearLayout>

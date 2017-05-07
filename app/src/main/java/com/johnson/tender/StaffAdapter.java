@@ -20,7 +20,9 @@ public class StaffAdapter extends AbstractAdapter<StaffBinding, Staff> {
   public void onBindViewHolder(final AbstractAdapter.ViewHolder holder, int position) {
     if (holder.binding != null) {
       StaffBinding binding = (StaffBinding) holder.binding;
-      binding.name.setText(list.get(position).getName());
+      Staff staff = list.get(position);
+      binding.name.setText(staff.getName());
+      binding.id.setText(staff.getIdentityId());
       binding.getRoot().setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {

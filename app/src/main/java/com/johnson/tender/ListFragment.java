@@ -8,6 +8,7 @@ import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -57,14 +58,15 @@ public abstract class ListFragment<B extends ViewDataBinding, T extends ViewData
     binding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false);
     ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle(getTitleId());
     getContainer().setHasFixedSize(true);
-    final RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+    final LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
     getContainer().setLayoutManager(layoutManager);
+    getContainer().addItemDecoration(new DividerItemDecoration(getContext(), layoutManager.getOrientation()));
     getContainer().setAdapter(adapter);
     getContainer().addOnScrollListener(new RecyclerView.OnScrollListener() {
       @Override
       public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
         int totalItemCount = layoutManager.getItemCount();
-        int lastVisibleItem = ((LinearLayoutManager) layoutManager).findLastVisibleItemPosition();
+        int lastVisibleItem = layoutManager.findLastVisibleItemPosition();
         if (totalItemCount <= (lastVisibleItem + visibleThreshold)) {
           loadMore(false);
         }

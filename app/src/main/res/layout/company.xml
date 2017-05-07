@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:background="?selectableItemBackground">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools">
+    <RelativeLayout
+        style="@style/ListFragmentItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/name"
-            android:layout_width="match_parent" android:layout_height="wrap_content"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="广东坚优建设工程有限公司"/>
+
+        <TextView android:id="@+id/code"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@id/name" tools:text="91440101MA59JCRA4J"/>
+
+        <TextView android:id="@+id/people" android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_below="@id/code"
+                  tools:text="房克宏"/>
     </RelativeLayout>
 </layout>

@@ -63,6 +63,7 @@ public class StaffSearchActivity extends SearchActivity<ActivityStaffSearchBindi
   List<Pair<String, Integer>> getAvailableOrders() {
     List<Pair<String, Integer>> list = new ArrayList<>();
     list.add(new Pair<>("name", R.string.staff_search_name));
+    list.add(new Pair<>("identityId", R.string.staff_search_id));
     return list;
   }
 

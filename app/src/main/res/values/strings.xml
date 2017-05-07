@@ -38,16 +38,30 @@
     <string name="company_search_supervisor">监事</string>
     <string name="company_search_executive">高管</string>
 
+    <string name="company_detail_id">ID</string>
+    <string name="company_detail_name">企业名称</string>
+    <string name="company_detail_code">代码</string>
+
     <string name="staff_search_title">人员搜索</string>
     <string name="staff_search_name">姓名</string>
     <string name="staff_search_registration_id">注册证号</string>
     <string name="staff_search_id">身份证号</string>
     <string name="staff_search_registration_company">注册单位</string>
 
+    <string name="staff_detail_id">ID</string>
+    <string name="staff_detail_name">姓名</string>
+    <string name="staff_detail_identification">身份证号</string>
+    <string name="staff_detail_gender">性别</string>
+    <string name="staff_detail_type">类别</string>
+
     <string name="project_search_title">项目搜索</string>
     <string name="project_search_name">项目名称</string>
     <string name="project_search_company">单位名称</string>
     <string name="project_search_staff">项目人员</string>
+
+    <string name="project_detail_id">ID</string>
+    <string name="project_detail_name">项目名称</string>
+    <string name="project_detail_location">项目地点</string>
 
     <string name="detail_filter">筛选条件</string>
     <string name="detail_order">排序</string>

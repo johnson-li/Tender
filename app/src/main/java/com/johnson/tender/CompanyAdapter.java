@@ -20,7 +20,10 @@ public class CompanyAdapter extends AbstractAdapter<CompanyBinding, Company> {
   public void onBindViewHolder(final AbstractAdapter.ViewHolder holder, int position) {
     if (holder.binding != null) {
       CompanyBinding binding = (CompanyBinding) holder.binding;
-      binding.name.setText(list.get(position).getCompanyName());
+      Company company = list.get(position);
+      binding.name.setText(company.getCompanyName());
+      binding.code.setText(company.getCompanyCode());
+      binding.people.setText(company.getLegalRepresentative());
       binding.getRoot().setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {

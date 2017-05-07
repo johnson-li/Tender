@@ -18,6 +18,7 @@ public class Company implements Serializable {
   private String businessLicenseId;
   private String registerLocation;
   private String operatingLocation;
+  @SerializedName("LegalRepresentative")
   private String legalRepresentative;
   private String companyType;
   private String registeredCapital;

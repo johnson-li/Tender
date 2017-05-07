@@ -68,7 +68,12 @@ public abstract class SearchActivity<T extends ViewDataBinding> extends BaseActi
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-    layoutManager = new LinearLayoutManager(getApplicationContext());
+    layoutManager = new LinearLayoutManager(getApplicationContext()) {
+      @Override
+      public boolean canScrollVertically() {
+        return false;
+      }
+    };
     getDragListView().setDragListListener(new DragListView.DragListListenerAdapter());
     getDragListView().setLayoutManager(layoutManager);
     getDragListView().setAdapter(adapter, true);
