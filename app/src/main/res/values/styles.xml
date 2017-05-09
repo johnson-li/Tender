@@ -38,4 +38,8 @@
         <item name="android:inputType">text</item>
         <item name="android:maxLines">1</item>
     </style>
+
+    <style name="DialogStyle" parent="Theme.AppCompat.Light.Dialog">
+        <item name="windowNoTitle">true</item>
+    </style>
 </resources>

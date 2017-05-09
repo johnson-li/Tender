@@ -5,7 +5,8 @@
         <item
             android:id="@+id/nav_main"
             android:icon="@drawable/ic_menu_camera"
-            android:title="@string/navigation_drawer_main"/>
+            android:title="@string/navigation_drawer_main"
+            android:visible="false"/>
         <item
             android:id="@+id/nav_company"
             android:icon="@drawable/ic_menu_gallery"
@@ -21,7 +22,8 @@
         <item
             android:id="@+id/nav_links"
             android:icon="@drawable/ic_menu_manage"
-            android:title="@string/navigation_drawer_links"/>
+            android:title="@string/navigation_drawer_links"
+            android:visible="false"/>
     </group>
 
 

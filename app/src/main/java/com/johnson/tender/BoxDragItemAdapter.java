@@ -33,7 +33,7 @@ public class BoxDragItemAdapter extends DragItemAdapter<Pair<String, Integer>, B
   @Override
   public void onBindViewHolder(ViewHolder holder, int position) {
     super.onBindViewHolder(holder, position);
-    holder.binding.box.setText(mItemList.get(position).second);
+    holder.binding.box.setText(mItemList.get(position).first.second);
   }
 
   class ViewHolder extends DragItemAdapter.ViewHolder {

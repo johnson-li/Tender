@@ -56,6 +56,8 @@
     <string name="staff_search_registration_id">注册证号</string>
     <string name="staff_search_id">身份证号</string>
     <string name="staff_search_registration_company">注册单位</string>
+    <string name="staff_search_gender">性别</string>
+    <string name="staff_search_type">类别</string>
 
     <string name="staff_detail_id">ID</string>
     <string name="staff_detail_name">姓名</string>
@@ -68,6 +70,7 @@
     <string name="staff_detail_seal_register_date">注册日期</string>
     <string name="staff_detail_expire_date">有效期</string>
     <string name="staff_detail_status">状态</string>
+    <string name="staff_detail_company_name">公司名称</string>
 
     <string name="project_search_title">项目搜索</string>
     <string name="project_search_name">项目名称</string>
@@ -86,4 +89,10 @@
     <string name="detail_order_ascending">升序</string>
     <string name="detail_order_descending">降序</string>
     <string name="detail_order_none">无序</string>
+
+    <string name="logout">注销登录</string>
+    <string name="logout_message">你确定要注销登陆吗？</string>
+
+    <string name="anonymous">匿名</string>
+    <string name="anonymous_email">无信息</string>
 </resources>

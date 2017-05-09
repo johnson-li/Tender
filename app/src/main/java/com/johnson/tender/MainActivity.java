@@ -1,6 +1,8 @@
 package com.johnson.tender;
 
 import android.Manifest;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
@@ -12,6 +14,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
@@ -60,24 +63,56 @@ public class MainActivity extends AppCompatActivity
 
     NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
     navigationView.setNavigationItemSelectedListener(this);
-    navigationView.getMenu().getItem(0).setChecked(true);
-    onNavigationItemSelected(navigationView.getMenu().getItem(0));
+    navigationView.getMenu().getItem(1).setChecked(true);
+    onNavigationItemSelected(navigationView.getMenu().getItem(1));
 
+    requestPermissions();
+  }
+
+  @Override
+  protected void onResume() {
+    super.onResume();
+    initUserInfo();
+  }
+
+  private void initUserInfo() {
+    NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
     User user = preferences.getUser();
     if (user != null) {
       ((TextView) navigationView.getHeaderView(0).findViewById(R.id.user_name)).setText(user.getName());
       ((TextView) navigationView.getHeaderView(0).findViewById(R.id.user_info)).setText(user.getEmail());
       ((ImageView) navigationView.getHeaderView(0).findViewById(R.id.user_icon)).setImageResource(R.drawable.psyduck);
-    } else {
       navigationView.getHeaderView(0).setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-          startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+          Dialog dialog = new AlertDialog.Builder(MainActivity.this, R.style.DialogStyle)
+              .setTitle(R.string.logout).setMessage(R.string.logout_message)
+              .setNegativeButton(android.R.string.cancel, null)
+              .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                  logout();
+                }
+              }).create();
+          dialog.show();
+        }
+      });
+    } else {
+      ((TextView) navigationView.getHeaderView(0).findViewById(R.id.user_name)).setText(R.string.anonymous);
+      ((TextView) navigationView.getHeaderView(0).findViewById(R.id.user_info)).setText(R.string.anonymous_email);
+      ((ImageView) navigationView.getHeaderView(0).findViewById(R.id.user_icon)).setImageResource(android.R.drawable.sym_def_app_icon);
+      navigationView.getHeaderView(0).setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+          startActivity(new Intent(MainActivity.this, LoginActivity.class));
         }
       });
     }
+  }
 
-    requestPermissions();
+  private void logout() {
+    preferences.setUser(null);
+    initUserInfo();
   }
 
   private void requestPermission(String permission, int callbackId) {

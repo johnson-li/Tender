@@ -43,6 +43,12 @@ public class Staff implements Serializable {
   private String status;
   @SerializedName("Link")
   private String link;
+  @SerializedName("Company")
+  private Company company;
+
+  public Company getCompany() {
+    return company;
+  }
 
   public long getId() {
     return id;

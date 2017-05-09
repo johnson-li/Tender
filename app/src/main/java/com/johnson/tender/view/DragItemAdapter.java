@@ -1,25 +1,39 @@
 package com.johnson.tender.view;
 
+import android.support.v4.util.Pair;
 import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public abstract class DragItemAdapter<T, VH extends DragItemAdapter.ViewHolder> extends RecyclerView.Adapter<VH> {
 
-  protected List<T> mItemList;
+  protected List<Pair<T, OrderCheckBox.ORDER>> mItemList;
   private DragStartCallback mDragStartCallback;
   private long mDragItemId = RecyclerView.NO_ID;
   private long mDropTargetId = RecyclerView.NO_ID;
 
+  public List<Pair<T, OrderCheckBox.ORDER>> getItemListWithOrder() {
+    return this.mItemList;
+  }
+
   public List<T> getItemList() {
-    return mItemList;
+    List<T> list = new ArrayList<>();
+    for (Pair<T, OrderCheckBox.ORDER> pair : this.mItemList) {
+      list.add(pair.first);
+    }
+    return list;
   }
 
   public void setItemList(List<T> itemList) {
-    mItemList = itemList;
+    List<Pair<T, OrderCheckBox.ORDER>> list = new ArrayList<>();
+    for (T t : itemList) {
+      list.add(new Pair<>(t, OrderCheckBox.ORDER.NONE));
+    }
+    mItemList = list;
     notifyDataSetChanged();
   }
 
@@ -44,14 +58,14 @@ public abstract class DragItemAdapter<T, VH extends DragItemAdapter.ViewHolder> 
 
   public void addItem(int pos, T item) {
     if (mItemList != null && mItemList.size() >= pos) {
-      mItemList.add(pos, item);
+      mItemList.add(pos, new Pair<>(item, OrderCheckBox.ORDER.NONE));
       notifyItemInserted(pos);
     }
   }
 
   public void changeItemPosition(int fromPos, int toPos) {
     if (mItemList != null && mItemList.size() > fromPos && mItemList.size() > toPos) {
-      T item = mItemList.remove(fromPos);
+      Pair<T, OrderCheckBox.ORDER> item = mItemList.remove(fromPos);
       mItemList.add(toPos, item);
       notifyItemMoved(fromPos, toPos);
     }

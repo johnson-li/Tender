@@ -42,9 +42,10 @@ public abstract class SearchActivity<T extends ViewDataBinding> extends BaseActi
   ArrayList<String> getOrders() {
     ArrayList<String> list = new ArrayList<>();
     for (int i = 0; i < adapter.getItemCount(); i++) {
-      String key = adapter.getItemList().get(i).first;
-      OrderCheckBox box = (OrderCheckBox) layoutManager.findViewByPosition(i).findViewById(R.id.box);
-      switch (box.getOrder()) {
+      Pair<Pair<String, Integer>, OrderCheckBox.ORDER> pair = adapter.getItemListWithOrder().get(i);
+      String key = pair.first.first;
+      OrderCheckBox.ORDER order = pair.second;
+      switch (order) {
         case ASCENDING:
           list.add(key);
           break;

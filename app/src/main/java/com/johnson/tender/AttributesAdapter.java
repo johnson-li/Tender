@@ -47,6 +47,7 @@ public class AttributesAdapter extends RecyclerView.Adapter<AttributesAdapter.Vi
     add(R.string.staff_detail_seal_register_date, staff.getRegisterDate());
     add(R.string.staff_detail_expire_date, staff.getExpireDate());
     add(R.string.staff_detail_status, staff.getStatus());
+    add(R.string.staff_detail_company_name, staff.getCompany() != null ? staff.getCompany().getCompanyName() : "");
   }
 
   public void add(Project project) {

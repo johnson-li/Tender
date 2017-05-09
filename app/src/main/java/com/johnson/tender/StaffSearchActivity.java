@@ -36,7 +36,8 @@ public class StaffSearchActivity extends SearchActivity<ActivityStaffSearchBindi
     String name = binding.name.getText().toString();
     String company = binding.company.getText().toString();
     String registrationId = binding.registrationId.getText().toString();
-    String title = binding.title.getText().toString();
+    String gender = binding.gender.getText().toString();
+    String type = binding.type.getText().toString();
     if (!TextUtils.isEmpty(id)) {
       list.add("id");
       list.add(id);
@@ -53,9 +54,13 @@ public class StaffSearchActivity extends SearchActivity<ActivityStaffSearchBindi
       list.add("registrationId");
       list.add(registrationId);
     }
-    if (!TextUtils.isEmpty(title)) {
-      list.add("title");
-      list.add(title);
+    if (!TextUtils.isEmpty(type)) {
+      list.add("type");
+      list.add(type);
+    }
+    if (!TextUtils.isEmpty(gender)) {
+      list.add("gender");
+      list.add(gender);
     }
     return list;
   }
