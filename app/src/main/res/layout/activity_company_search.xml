@@ -19,108 +19,157 @@
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>
 
-        <LinearLayout android:layout_width="match_parent"
-                      android:layout_height="match_parent"
-                      android:layout_below="@+id/appBarLayout"
-                      android:orientation="vertical"
-                      android:paddingEnd="20dp"
-                      android:paddingStart="20dp"
-                      android:paddingTop="20dp">
-
-            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-                      android:text="@string/detail_filter"
-                      android:textSize="18sp"/>
+        <ScrollView android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/appBarLayout">
 
             <LinearLayout android:layout_width="match_parent"
-                          android:layout_height="wrap_content"
+                          android:layout_height="match_parent"
+                          android:layout_below="@+id/appBarLayout"
+                          android:layout_marginTop="10dp"
                           android:orientation="vertical"
-                          android:paddingEnd="10dp"
-                          android:paddingStart="10dp">
+                          android:paddingEnd="20dp"
+                          android:paddingStart="20dp"
+                          android:paddingTop="20dp">
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                          android:text="@string/detail_filter"
+                          android:textSize="18sp"/>
+
                 <LinearLayout android:layout_width="match_parent"
                               android:layout_height="wrap_content"
-                              android:orientation="horizontal">
-                    <TextView style="@style/SearchAttribute"
-                              android:text="@string/company_search_name"/>
-                    <EditText android:id="@+id/name" style="@style/SearchActivityEditTextStyle"
-                              android:layout_width="match_parent"
-                              android:layout_height="wrap_content"/>
+                              android:orientation="vertical"
+                              android:paddingEnd="10dp"
+                              android:paddingStart="10dp">
+                    <LinearLayout android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"
+                                  android:orientation="horizontal">
+                        <TextView style="@style/SearchAttribute"
+                                  android:text="@string/company_search_name"/>
+                        <EditText android:id="@+id/name" style="@style/SearchActivityEditTextStyle"
+                                  android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"
+                                  android:orientation="horizontal">
+                        <TextView style="@style/SearchAttribute"
+                                  android:text="@string/company_search_people"/>
+                        <EditText android:id="@+id/people"
+                                  style="@style/SearchActivityEditTextStyle"
+                                  android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"
+                                  android:orientation="horizontal">
+                        <TextView style="@style/SearchAttribute"
+                                  android:text="@string/company_search_manager"/>
+                        <EditText android:id="@+id/manager"
+                                  style="@style/SearchActivityEditTextStyle"
+                                  android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"
+                                  android:orientation="horizontal">
+                        <TextView style="@style/SearchAttribute"
+                                  android:text="@string/company_search_supervisor"/>
+                        <EditText android:id="@+id/supervisor"
+                                  style="@style/SearchActivityEditTextStyle"
+                                  android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"
+                                  android:orientation="horizontal">
+                        <TextView style="@style/SearchAttribute"
+                                  android:text="@string/company_search_executive"/>
+                        <EditText android:id="@+id/executive"
+                                  style="@style/SearchActivityEditTextStyle"
+                                  android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"
+                                  android:orientation="horizontal">
+                        <TextView style="@style/SearchAttribute"
+                                  android:text="@string/company_search_constructor"/>
+                        <EditText android:id="@+id/constructor"
+                                  style="@style/SearchActivityEditTextStyle"
+                                  android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"
+                                  android:orientation="horizontal">
+                        <TextView style="@style/SearchAttribute"
+                                  android:text="@string/company_search_address"/>
+                        <EditText android:id="@+id/address"
+                                  style="@style/SearchActivityEditTextStyle"
+                                  android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"
+                                  android:orientation="horizontal">
+                        <TextView style="@style/SearchAttribute"
+                                  android:text="@string/company_search_type"/>
+                        <EditText android:id="@+id/type" style="@style/SearchActivityEditTextStyle"
+                                  android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"
+                                  android:orientation="horizontal">
+                        <TextView style="@style/SearchAttribute"
+                                  android:text="@string/company_search_level"/>
+                        <EditText android:id="@+id/level" style="@style/SearchActivityEditTextStyle"
+                                  android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"
+                                  android:orientation="horizontal">
+                        <TextView style="@style/SearchAttribute"
+                                  android:text="@string/company_search_location"/>
+                        <EditText android:id="@+id/location"
+                                  style="@style/SearchActivityEditTextStyle"
+                                  android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"
+                                  android:orientation="horizontal">
+                        <TextView style="@style/SearchAttribute"
+                                  android:text="@string/company_search_funding"/>
+                        <EditText android:id="@+id/funding"
+                                  style="@style/SearchActivityEditTextStyle"
+                                  android:layout_width="match_parent"
+                                  android:layout_height="wrap_content"/>
+                    </LinearLayout>
                 </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:layout_marginTop="20dp"
+                    android:text="@string/detail_order"
+                    android:textSize="18sp"/>
+
                 <LinearLayout android:layout_width="match_parent"
                               android:layout_height="wrap_content"
-                              android:orientation="horizontal">
-                    <TextView style="@style/SearchAttribute"
-                              android:text="@string/company_search_people"/>
-                    <EditText android:id="@+id/people" style="@style/SearchActivityEditTextStyle"
-                              android:layout_width="match_parent"
-                              android:layout_height="wrap_content"/>
-                </LinearLayout>
-                <LinearLayout android:layout_width="match_parent"
-                              android:layout_height="wrap_content"
-                              android:orientation="horizontal">
-                    <TextView style="@style/SearchAttribute"
-                              android:text="@string/company_search_manager"/>
-                    <EditText android:id="@+id/manager" style="@style/SearchActivityEditTextStyle"
-                              android:layout_width="match_parent"
-                              android:layout_height="wrap_content"/>
-                </LinearLayout>
-                <LinearLayout android:layout_width="match_parent"
-                              android:layout_height="wrap_content"
-                              android:orientation="horizontal">
-                    <TextView style="@style/SearchAttribute"
-                              android:text="@string/company_search_supervisor"/>
-                    <EditText android:id="@+id/supervisor"
-                              style="@style/SearchActivityEditTextStyle"
-                              android:layout_width="match_parent"
-                              android:layout_height="wrap_content"/>
-                </LinearLayout>
-                <LinearLayout android:layout_width="match_parent"
-                              android:layout_height="wrap_content"
-                              android:orientation="horizontal">
-                    <TextView style="@style/SearchAttribute"
-                              android:text="@string/company_search_executive"/>
-                    <EditText android:id="@+id/executive" style="@style/SearchActivityEditTextStyle"
-                              android:layout_width="match_parent"
-                              android:layout_height="wrap_content"/>
-                </LinearLayout>
-                <LinearLayout android:layout_width="match_parent"
-                              android:layout_height="wrap_content"
-                              android:orientation="horizontal">
-                    <TextView style="@style/SearchAttribute"
-                              android:text="@string/company_search_constructor"/>
-                    <EditText android:id="@+id/constructor"
-                              style="@style/SearchActivityEditTextStyle"
-                              android:layout_width="match_parent"
-                              android:layout_height="wrap_content"/>
-                </LinearLayout>
-                <LinearLayout android:layout_width="match_parent"
-                              android:layout_height="wrap_content"
-                              android:orientation="horizontal">
-                    <TextView style="@style/SearchAttribute"
-                              android:text="@string/company_search_address"/>
-                    <EditText android:id="@+id/address" style="@style/SearchActivityEditTextStyle"
-                              android:layout_width="match_parent"
-                              android:layout_height="wrap_content"/>
+                              android:orientation="vertical"
+                              android:paddingBottom="50dp"
+                              android:paddingEnd="10dp"
+                              android:paddingStart="10dp">
+                    <com.johnson.tender.view.DragListView
+                        android:id="@+id/dragListView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    </com.johnson.tender.view.DragListView>
                 </LinearLayout>
             </LinearLayout>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:layout_marginTop="20dp"
-                android:text="@string/detail_order"
-                android:textSize="18sp"/>
-
-            <LinearLayout android:layout_width="match_parent"
-                          android:layout_height="wrap_content"
-                          android:orientation="vertical"
-                          android:paddingEnd="10dp"
-                          android:paddingStart="10dp">
-                <com.johnson.tender.view.DragListView
-                    android:id="@+id/dragListView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                </com.johnson.tender.view.DragListView>
-            </LinearLayout>
-        </LinearLayout>
+        </ScrollView>
     </RelativeLayout>
 </layout>

@@ -53,6 +53,10 @@ public class CompanySearchActivity extends SearchActivity<ActivityCompanySearchB
     String executive = binding.executive.getText().toString();
     String manager = binding.manager.getText().toString();
     String supervisor = binding.supervisor.getText().toString();
+    String type = binding.type.getText().toString();
+    String level = binding.level.getText().toString();
+    String location = binding.location.getText().toString();
+    String funding = binding.funding.getText().toString();
     if (!TextUtils.isEmpty(name)) {
       list.add("name");
       list.add(name);
@@ -80,6 +84,22 @@ public class CompanySearchActivity extends SearchActivity<ActivityCompanySearchB
     if (!TextUtils.isEmpty(supervisor)) {
       list.add("supervisor");
       list.add(supervisor);
+    }
+    if (!TextUtils.isEmpty(type)) {
+      list.add("type");
+      list.add(type);
+    }
+    if (!TextUtils.isEmpty(level)) {
+      list.add("level");
+      list.add(level);
+    }
+    if (!TextUtils.isEmpty(location)) {
+      list.add("location");
+      list.add(location);
+    }
+    if (!TextUtils.isEmpty(funding)) {
+      list.add("funding");
+      list.add(funding);
     }
     return list;
   }

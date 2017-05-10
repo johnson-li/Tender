@@ -37,6 +37,10 @@
     <string name="company_search_constructor">建造师</string>
     <string name="company_search_supervisor">监事</string>
     <string name="company_search_executive">高管</string>
+    <string name="company_search_type">类型</string>
+    <string name="company_search_level">级别</string>
+    <string name="company_search_location">地区</string>
+    <string name="company_search_funding">资金</string>
 
     <string name="company_detail_id">ID</string>
     <string name="company_detail_name">企业名称</string>
@@ -76,6 +80,13 @@
     <string name="project_search_name">项目名称</string>
     <string name="project_search_company">单位名称</string>
     <string name="project_search_staff">项目人员</string>
+    <string name="project_search_location">地区</string>
+    <string name="project_search_price">合同金额</string>
+    <string name="project_search_type">项目类型</string>
+    <string name="project_search_status">项目状态</string>
+    <string name="project_search_time">时间</string>
+    <string name="project_search_source">资金来源</string>
+    <string name="project_search_judge_method">评价方法</string>
 
     <string name="project_detail_id">ID</string>
     <string name="project_detail_name">项目名称</string>

@@ -48,7 +48,12 @@ public class ProjectSearchActivity extends SearchActivity<ActivityProjectSearchB
     String name = binding.name.getText().toString();
     String company = binding.company.getText().toString();
     String staff = binding.staff.getText().toString();
-    String title = binding.title.getText().toString();
+    String location = binding.location.getText().toString();
+    String price = binding.price.getText().toString();
+    String type = binding.type.getText().toString();
+    String time = binding.time.getText().toString();
+    String source = binding.source.getText().toString();
+    String judge = binding.judge.getText().toString();
     if (!TextUtils.isEmpty(name)) {
       list.add("name");
       list.add(name);
@@ -61,9 +66,29 @@ public class ProjectSearchActivity extends SearchActivity<ActivityProjectSearchB
       list.add("staff");
       list.add(staff);
     }
-    if (!TextUtils.isEmpty(title)) {
-      list.add("title");
-      list.add(title);
+    if (!TextUtils.isEmpty(location)) {
+      list.add("location");
+      list.add(location);
+    }
+    if (!TextUtils.isEmpty(price)) {
+      list.add("price");
+      list.add(price);
+    }
+    if (!TextUtils.isEmpty(type)) {
+      list.add("projectType");
+      list.add(type);
+    }
+    if (!TextUtils.isEmpty(time)) {
+      list.add("projectTime");
+      list.add(time);
+    }
+    if (!TextUtils.isEmpty(source)) {
+      list.add("source");
+      list.add(source);
+    }
+    if (!TextUtils.isEmpty(judge)) {
+      list.add("judge");
+      list.add(judge);
     }
     return list;
   }
