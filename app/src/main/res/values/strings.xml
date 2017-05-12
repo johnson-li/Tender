@@ -23,6 +23,7 @@
     <string name="search">search</string>
 
     <string name="company_detail_title">企业详情</string>
+    <string name="company_cert_detail_title">企业资质详情</string>
     <string name="staff_detail_title">员工详情</string>
     <string name="project_detail_title">项目详情</string>
 
@@ -54,6 +55,9 @@
     <string name="company_detail_security_cert_id">安全证书ID</string>
     <string name="company_detail_cert_expire">有效期</string>
     <string name="company_detail_capital">注册资金</string>
+    <string name="company_detail_certs">企业资质</string>
+    <string name="company_detail_staff">注册人员</string>
+    <string name="company_detail_projects">工程项目</string>
 
     <string name="staff_search_title">人员搜索</string>
     <string name="staff_search_name">姓名</string>
@@ -95,6 +99,14 @@
     <string name="project_detail_project_number">项目代码</string>
     <string name="project_detail_type">项目类型</string>
 
+    <string name="cert_detail_ID">ID</string>
+    <string name="cert_detail_name">名称</string>
+    <string name="cert_detail_type">资质类型</string>
+    <string name="cert_detail_cert_id">证书ID</string>
+    <string name="cert_detail_issue_date">颁发日期</string>
+    <string name="cert_detail_expire_date">有效期</string>
+    <string name="cert_detail_issuer">颁发机构</string>
+
     <string name="detail_filter">筛选条件</string>
     <string name="detail_order">排序</string>
     <string name="detail_order_ascending">升序</string>
@@ -106,4 +118,8 @@
 
     <string name="anonymous">匿名</string>
     <string name="anonymous_email">无信息</string>
+
+    <string name="dialog_staffs">员工列表</string>
+
+    <string name="list_1_more">%1$s 等</string>
 </resources>

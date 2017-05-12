@@ -3,6 +3,7 @@ package com.johnson.tender.entity;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by Johnson on 2017/4/30.
@@ -15,16 +16,36 @@ public class Company implements Serializable {
   private String companyName;
   @SerializedName("CompanyCode")
   private String companyCode;
+  @SerializedName("BussinessLicenseID")
   private String businessLicenseId;
+  @SerializedName("RegisterLocation")
   private String registerLocation;
+  @SerializedName("OperatingLocation")
   private String operatingLocation;
   @SerializedName("LegalRepresentative")
   private String legalRepresentative;
+  @SerializedName("CompanyType")
   private String companyType;
+  @SerializedName("RegisteredCapital")
   private String registeredCapital;
+  @SerializedName("CertID")
   private String certId;
+  @SerializedName("SecurityCertID")
   private String securityCertId;
+  @SerializedName("CertExpire")
   private String certExpire;
+  @SerializedName("CompanyCerts")
+  private List<CompanyCert> companyCerts;
+  @SerializedName("Staffs")
+  private List<Staff> staffs;
+
+  public List<Staff> getStaffs() {
+    return staffs;
+  }
+
+  public List<CompanyCert> getCompanyCerts() {
+    return companyCerts;
+  }
 
   public long getId() {
     return id;

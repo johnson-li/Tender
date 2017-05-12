@@ -1,14 +1,21 @@
 package com.johnson.tender;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.graphics.Paint;
 import android.support.annotation.StringRes;
 import android.support.v4.util.Pair;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 
 import com.johnson.tender.databinding.AttributeBinding;
 import com.johnson.tender.entity.Company;
+import com.johnson.tender.entity.CompanyCert;
 import com.johnson.tender.entity.Project;
 import com.johnson.tender.entity.Staff;
 
@@ -21,7 +28,7 @@ import java.util.List;
 
 public class AttributesAdapter extends RecyclerView.Adapter<AttributesAdapter.ViewHolder> {
 
-  private List<Pair<Integer, String>> attributePairs = new ArrayList<>();
+  private List<Pair<Integer, Object>> attributePairs = new ArrayList<>();
 
   public void add(Object object) {
     if (object instanceof Company) {
@@ -30,9 +37,21 @@ public class AttributesAdapter extends RecyclerView.Adapter<AttributesAdapter.Vi
       add((Staff) object);
     } else if (object instanceof Project) {
       add((Project) object);
+    } else if (object instanceof CompanyCert) {
+      add((CompanyCert) object);
     } else {
       throw new RuntimeException("Not supported class: " + object.getClass());
     }
+  }
+
+  public void add(CompanyCert companyCert) {
+    add(R.string.cert_detail_ID, companyCert.getId());
+    add(R.string.cert_detail_name, companyCert.getName());
+    add(R.string.cert_detail_type, companyCert.getType());
+    add(R.string.cert_detail_cert_id, companyCert.getCertId());
+    add(R.string.cert_detail_issue_date, companyCert.getIssueDate());
+    add(R.string.cert_detail_expire_date, companyCert.getExpireDate());
+    add(R.string.cert_detail_issuer, companyCert.getIssuer());
   }
 
   public void add(Staff staff) {
@@ -71,13 +90,15 @@ public class AttributesAdapter extends RecyclerView.Adapter<AttributesAdapter.Vi
     add(R.string.company_detail_cert_id, company.getCertId());
     add(R.string.company_detail_security_cert_id, company.getSecurityCertId());
     add(R.string.company_detail_cert_expire, company.getCertExpire());
+    add(R.string.company_detail_certs, company.getCompanyCerts().isEmpty() ? null : company.getCompanyCerts().get(0));
+    add(R.string.company_detail_staff, company.getStaffs());
   }
 
   public void add(@StringRes int id, long val) {
     add(id, String.valueOf(val));
   }
 
-  public void add(@StringRes int id, String val) {
+  public void add(@StringRes int id, Object val) {
     attributePairs.add(new Pair<>(id, val));
     notifyDataSetChanged();
   }
@@ -90,11 +111,61 @@ public class AttributesAdapter extends RecyclerView.Adapter<AttributesAdapter.Vi
   }
 
   @Override
-  public void onBindViewHolder(AttributesAdapter.ViewHolder holder, int position) {
+  public void onBindViewHolder(final AttributesAdapter.ViewHolder holder, int position) {
     if (position % 2 == 0) {
       holder.binding.text.setText(attributePairs.get(position / 2).first);
     } else {
-      holder.binding.text.setText(attributePairs.get(position / 2).second);
+      Object object = attributePairs.get(position / 2).second;
+      if (object == null) {
+        //do nothing
+      } else if (object instanceof String) {
+        holder.binding.text.setText(object.toString());
+      } else if (object instanceof CompanyCert) {
+        final CompanyCert companyCert = (CompanyCert) object;
+        holder.binding.text.setText(companyCert.getName());
+        holder.binding.text.setPaintFlags(holder.binding.text.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        holder.binding.text.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            Intent intent = new Intent(holder.binding.getRoot().getContext(), CompanyCertActivity.class);
+            intent.putExtra(CompanyCertActivity.COMPANY_CERT_ATTR, companyCert);
+            holder.binding.getRoot().getContext().startActivity(intent);
+          }
+        });
+      } else if (object instanceof List) {
+        List list = (List) object;
+        if (!list.isEmpty()) {
+          if (list.get(0) instanceof Staff) {
+            final List<Staff> staffs = (List<Staff>) list;
+            holder.binding.text.setText(holder.binding.getRoot().getContext().getString(R.string.list_1_more, staffs.get(0).getName()));
+            holder.binding.text.setPaintFlags(holder.binding.text.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+            holder.binding.text.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(holder.binding.getRoot().getContext());
+                builder.setTitle(R.string.dialog_staffs);
+                final ArrayAdapter<String> adapter = new ArrayAdapter<>(holder.binding.getRoot().getContext(), R.layout.select_dialog_item);
+                for (Staff staff : staffs) {
+                  adapter.add(staff.getName());
+                }
+                builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
+                  @Override
+                  public void onClick(DialogInterface dialog, int which) {
+                    Staff staff = staffs.get(which);
+                    dialog.dismiss();
+                    Intent intent = new Intent(holder.binding.getRoot().getContext(), StaffActivity.class);
+                    intent.putExtra(StaffActivity.STAFF_ATTR, staff);
+                    holder.binding.getRoot().getContext().startActivity(intent);
+                  }
+                });
+                builder.show();
+              }
+            });
+          }
+        }
+      } else {
+        throw new RuntimeException("unsupported class: " + object.getClass());
+      }
     }
   }
 
