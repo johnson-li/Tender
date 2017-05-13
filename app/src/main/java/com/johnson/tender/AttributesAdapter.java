@@ -66,7 +66,7 @@ public class AttributesAdapter extends RecyclerView.Adapter<AttributesAdapter.Vi
     add(R.string.staff_detail_seal_register_date, staff.getRegisterDate());
     add(R.string.staff_detail_expire_date, staff.getExpireDate());
     add(R.string.staff_detail_status, staff.getStatus());
-    add(R.string.staff_detail_company_name, staff.getCompany() != null ? staff.getCompany().getCompanyName() : "");
+    add(R.string.staff_detail_company_name, staff.getCompany());
   }
 
   public void add(Project project) {
@@ -76,6 +76,7 @@ public class AttributesAdapter extends RecyclerView.Adapter<AttributesAdapter.Vi
     add(R.string.project_detail_customer_organization, project.getCustomerOrganization());
     add(R.string.project_detail_project_number, project.getProjectNumber());
     add(R.string.project_detail_type, project.getProjectType());
+    add(R.string.project_detail_company, project.getCompany());
   }
 
   public void add(Company company) {
@@ -90,7 +91,7 @@ public class AttributesAdapter extends RecyclerView.Adapter<AttributesAdapter.Vi
     add(R.string.company_detail_cert_id, company.getCertId());
     add(R.string.company_detail_security_cert_id, company.getSecurityCertId());
     add(R.string.company_detail_cert_expire, company.getCertExpire());
-    add(R.string.company_detail_certs, company.getCompanyCerts().isEmpty() ? null : company.getCompanyCerts().get(0));
+    add(R.string.company_detail_certs, company.getCompanyCerts() == null || company.getCompanyCerts().isEmpty() ? null : company.getCompanyCerts().get(0));
     add(R.string.company_detail_staff, company.getStaffs());
   }
 
@@ -129,6 +130,18 @@ public class AttributesAdapter extends RecyclerView.Adapter<AttributesAdapter.Vi
           public void onClick(View v) {
             Intent intent = new Intent(holder.binding.getRoot().getContext(), CompanyCertActivity.class);
             intent.putExtra(CompanyCertActivity.COMPANY_CERT_ATTR, companyCert);
+            holder.binding.getRoot().getContext().startActivity(intent);
+          }
+        });
+      } else if (object instanceof Company) {
+        final Company company = (Company) object;
+        holder.binding.text.setText(company.getCompanyName());
+        holder.binding.text.setPaintFlags(holder.binding.text.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        holder.binding.text.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            Intent intent = new Intent(holder.binding.getRoot().getContext(), CompanyActivity.class);
+            intent.putExtra(CompanyActivity.COMPANY_ATTR, company);
             holder.binding.getRoot().getContext().startActivity(intent);
           }
         });

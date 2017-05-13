@@ -8,30 +8,27 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 public abstract class DragItemAdapter<T, VH extends DragItemAdapter.ViewHolder> extends RecyclerView.Adapter<VH> {
 
-  protected List<Pair<T, OrderCheckBox.ORDER>> mItemList;
+  protected List<Pair<T, AtomicReference<OrderCheckBox.ORDER>>> mItemList;
   private DragStartCallback mDragStartCallback;
   private long mDragItemId = RecyclerView.NO_ID;
   private long mDropTargetId = RecyclerView.NO_ID;
 
   public List<Pair<T, OrderCheckBox.ORDER>> getItemListWithOrder() {
-    return this.mItemList;
-  }
-
-  public List<T> getItemList() {
-    List<T> list = new ArrayList<>();
-    for (Pair<T, OrderCheckBox.ORDER> pair : this.mItemList) {
-      list.add(pair.first);
+    List<Pair<T, OrderCheckBox.ORDER>> list = new ArrayList<>();
+    for (Pair<T, AtomicReference<OrderCheckBox.ORDER>> pair : mItemList) {
+      list.add(new Pair<>(pair.first, pair.second.get()));
     }
     return list;
   }
 
   public void setItemList(List<T> itemList) {
-    List<Pair<T, OrderCheckBox.ORDER>> list = new ArrayList<>();
+    List<Pair<T, AtomicReference<OrderCheckBox.ORDER>>> list = new ArrayList<>();
     for (T t : itemList) {
-      list.add(new Pair<>(t, OrderCheckBox.ORDER.NONE));
+      list.add(new Pair<>(t, new AtomicReference<>(OrderCheckBox.ORDER.NONE)));
     }
     mItemList = list;
     notifyDataSetChanged();
@@ -58,14 +55,14 @@ public abstract class DragItemAdapter<T, VH extends DragItemAdapter.ViewHolder> 
 
   public void addItem(int pos, T item) {
     if (mItemList != null && mItemList.size() >= pos) {
-      mItemList.add(pos, new Pair<>(item, OrderCheckBox.ORDER.NONE));
+      mItemList.add(pos, new Pair<>(item, new AtomicReference<>(OrderCheckBox.ORDER.NONE)));
       notifyItemInserted(pos);
     }
   }
 
   public void changeItemPosition(int fromPos, int toPos) {
     if (mItemList != null && mItemList.size() > fromPos && mItemList.size() > toPos) {
-      Pair<T, OrderCheckBox.ORDER> item = mItemList.remove(fromPos);
+      Pair<T, AtomicReference<OrderCheckBox.ORDER>> item = mItemList.remove(fromPos);
       mItemList.add(toPos, item);
       notifyItemMoved(fromPos, toPos);
     }
@@ -94,11 +91,13 @@ public abstract class DragItemAdapter<T, VH extends DragItemAdapter.ViewHolder> 
   }
 
   @Override
-  public void onBindViewHolder(VH holder, int position) {
+  public void onBindViewHolder(final VH holder, int position) {
     long itemId = getItemId(position);
     holder.mItemId = itemId;
     holder.itemView.setVisibility(mDragItemId == itemId ? View.INVISIBLE : View.VISIBLE);
     holder.setDragStartCallback(mDragStartCallback);
+    final OrderCheckBox box = (OrderCheckBox) holder.mGrabView;
+    box.setReference(mItemList.get(position).second);
   }
 
   @Override

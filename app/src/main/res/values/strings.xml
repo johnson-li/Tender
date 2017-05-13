@@ -98,6 +98,7 @@
     <string name="project_detail_customer_organization">客户组织</string>
     <string name="project_detail_project_number">项目代码</string>
     <string name="project_detail_type">项目类型</string>
+    <string name="project_detail_company">公司</string>
 
     <string name="cert_detail_ID">ID</string>
     <string name="cert_detail_name">名称</string>

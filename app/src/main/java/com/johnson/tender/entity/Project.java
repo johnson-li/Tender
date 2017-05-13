@@ -36,6 +36,13 @@ public class Project implements Serializable {
   @SerializedName("ProjectType")
   String projectType;
 
+  public Company getCompany() {
+    return company;
+  }
+
+  @SerializedName("Company")
+  Company company;
+
   public String getProjectType() {
     return projectType;
   }

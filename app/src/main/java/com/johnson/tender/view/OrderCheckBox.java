@@ -13,12 +13,15 @@ import android.widget.TextView;
 import com.johnson.tender.R;
 import com.johnson.tender.databinding.OrderCheckBoxBinding;
 
+import java.util.concurrent.atomic.AtomicReference;
+
 /**
  * Created by Johnson on 2017/5/6.
  */
 
 public class OrderCheckBox extends LinearLayout {
   OrderCheckBoxBinding binding;
+  AtomicReference<ORDER> reference;
 
   public OrderCheckBox(Context context, @Nullable AttributeSet attrs) {
     super(context, attrs);
@@ -41,6 +44,35 @@ public class OrderCheckBox extends LinearLayout {
       binding.title.setText(title);
     }
     typedArray.recycle();
+
+    binding.descending.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        if (reference != null) {
+          reference.set(ORDER.DESCENDING);
+        }
+      }
+    });
+    binding.ascending.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        if (reference != null) {
+          reference.set(ORDER.ASCENDING);
+        }
+      }
+    });
+    binding.none.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        if (reference != null) {
+          reference.set(ORDER.NONE);
+        }
+      }
+    });
+  }
+
+  public void setReference(AtomicReference<ORDER> reference) {
+    this.reference = reference;
   }
 
   public void setText(@StringRes int resid) {
