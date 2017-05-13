@@ -25,6 +25,8 @@
     <string name="company_detail_title">企业详情</string>
     <string name="company_cert_detail_title">企业资质详情</string>
     <string name="staff_detail_title">员工详情</string>
+    <string name="staff_cert_detail_title">员工证书详情</string>
+    <string name="staff_achievement_detail_title">个人业绩详情</string>
     <string name="project_detail_title">项目详情</string>
 
     <string name="confirm">确定</string>
@@ -79,6 +81,24 @@
     <string name="staff_detail_expire_date">有效期</string>
     <string name="staff_detail_status">状态</string>
     <string name="staff_detail_company_name">公司名称</string>
+    <string name="staff_detail_cert">证件信息</string>
+    <string name="staff_detail_achievements">个人业绩</string>
+
+    <string name="staff_cert_detail_type">类别</string>
+    <string name="staff_cert_detail_staff">员工</string>
+    <string name="staff_cert_detail_specialty">工种</string>
+    <string name="staff_cert_detail_organization">组织</string>
+    <string name="staff_cert_detail_cert_id">证书ID</string>
+    <string name="staff_cert_detail_seal_id">印章ID</string>
+    <string name="staff_cert_detail_register_date">注册日期</string>
+    <string name="staff_cert_detail_expire_date">有效期</string>
+
+    <string name="staff_achi_detail_staff">员工</string>
+    <string name="staff_achi_detail_role">角色</string>
+    <string name="staff_achi_detail_project">项目</string>
+    <string name="staff_achi_detail_customer">客户机构</string>
+    <string name="staff_achi_detail_status">状态</string>
+    <string name="staff_achi_detail_category">分类</string>
 
     <string name="project_search_title">项目搜索</string>
     <string name="project_search_name">项目名称</string>
@@ -121,6 +141,7 @@
     <string name="anonymous_email">无信息</string>
 
     <string name="dialog_staffs">员工列表</string>
+    <string name="dialog_projects">工程列表</string>
 
     <string name="list_1_more">%1$s 等</string>
 </resources>

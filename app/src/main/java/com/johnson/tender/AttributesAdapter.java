@@ -18,7 +18,10 @@ import com.johnson.tender.entity.Company;
 import com.johnson.tender.entity.CompanyCert;
 import com.johnson.tender.entity.Project;
 import com.johnson.tender.entity.Staff;
+import com.johnson.tender.entity.StaffAchievement;
+import com.johnson.tender.entity.StaffCert;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,6 +42,10 @@ public class AttributesAdapter extends RecyclerView.Adapter<AttributesAdapter.Vi
       add((Project) object);
     } else if (object instanceof CompanyCert) {
       add((CompanyCert) object);
+    } else if (object instanceof StaffCert) {
+      add((StaffCert) object);
+    } else if (object instanceof StaffAchievement) {
+      add((StaffAchievement) object);
     } else {
       throw new RuntimeException("Not supported class: " + object.getClass());
     }
@@ -67,6 +74,19 @@ public class AttributesAdapter extends RecyclerView.Adapter<AttributesAdapter.Vi
     add(R.string.staff_detail_expire_date, staff.getExpireDate());
     add(R.string.staff_detail_status, staff.getStatus());
     add(R.string.staff_detail_company_name, staff.getCompany());
+    add(R.string.staff_detail_cert, staff.getStaffCerts());
+    add(R.string.staff_detail_achievements, staff.getStaffAchievements());
+
+    if (staff.getStaffCerts() != null) {
+      for (StaffCert staffCert : staff.getStaffCerts()) {
+        staffCert.setStaff(staff);
+      }
+    }
+    if (staff.getStaffAchievements() != null) {
+      for (StaffAchievement staffAchievement : staff.getStaffAchievements()) {
+        staffAchievement.setStaff(staff);
+      }
+    }
   }
 
   public void add(Project project) {
@@ -93,6 +113,33 @@ public class AttributesAdapter extends RecyclerView.Adapter<AttributesAdapter.Vi
     add(R.string.company_detail_cert_expire, company.getCertExpire());
     add(R.string.company_detail_certs, company.getCompanyCerts() == null || company.getCompanyCerts().isEmpty() ? null : company.getCompanyCerts().get(0));
     add(R.string.company_detail_staff, company.getStaffs());
+    add(R.string.company_detail_projects, company.getProjects());
+
+    if (company.getProjects() != null) {
+      for (Project project : company.getProjects()) {
+        project.setCompany(company);
+      }
+    }
+  }
+
+  public void add(StaffCert staffCert) {
+    add(R.string.staff_cert_detail_staff, staffCert.getStaff().getName());
+    add(R.string.staff_cert_detail_type, staffCert.getType());
+    add(R.string.staff_detail_specialty, staffCert.getSpecialty());
+    add(R.string.staff_cert_detail_organization, staffCert.getOrganizationName());
+    add(R.string.staff_cert_detail_cert_id, staffCert.getCertId());
+    add(R.string.staff_cert_detail_seal_id, staffCert.getSealId());
+    add(R.string.staff_cert_detail_register_date, staffCert.getRegisterDate());
+    add(R.string.staff_cert_detail_expire_date, staffCert.getExpireDate());
+  }
+
+  public void add(StaffAchievement staffAchievement) {
+    add(R.string.staff_achi_detail_staff, staffAchievement.getStaff().getName());
+    add(R.string.staff_achi_detail_project, staffAchievement.getProjectName());
+    add(R.string.staff_achi_detail_role, staffAchievement.getRole());
+    add(R.string.staff_achi_detail_customer, staffAchievement.getCustomerInstitute());
+    add(R.string.staff_achi_detail_status, staffAchievement.getStatus());
+    add(R.string.staff_achi_detail_category, staffAchievement.getCategory());
   }
 
   public void add(@StringRes int id, long val) {
@@ -145,6 +192,30 @@ public class AttributesAdapter extends RecyclerView.Adapter<AttributesAdapter.Vi
             holder.binding.getRoot().getContext().startActivity(intent);
           }
         });
+      } else if (object instanceof StaffCert) {
+        final StaffCert staffCert = (StaffCert) object;
+        holder.binding.text.setText(staffCert.getType());
+        holder.binding.text.setPaintFlags(holder.binding.text.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        holder.binding.text.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            Intent intent = new Intent(holder.binding.getRoot().getContext(), StaffCertActivity.class);
+            intent.putExtra(StaffCertActivity.STAFF_CERT_ATTR, staffCert);
+            holder.binding.getRoot().getContext().startActivity(intent);
+          }
+        });
+      } else if (object instanceof StaffAchievement) {
+        final StaffAchievement staffAchievement = (StaffAchievement) object;
+        holder.binding.text.setText(staffAchievement.getProjectName());
+        holder.binding.text.setPaintFlags(holder.binding.text.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        holder.binding.text.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+            Intent intent = new Intent(holder.binding.getRoot().getContext(), StaffAchievementActivity.class);
+            intent.putExtra(StaffAchievementActivity.STAFF_ACHIEVEMENT_ATTR, staffAchievement);
+            holder.binding.getRoot().getContext().startActivity(intent);
+          }
+        });
       } else if (object instanceof List) {
         List list = (List) object;
         if (!list.isEmpty()) {
@@ -174,12 +245,83 @@ public class AttributesAdapter extends RecyclerView.Adapter<AttributesAdapter.Vi
                 builder.show();
               }
             });
+          } else if (list.get(0) instanceof Project) {
+            final List<Project> projects = (List<Project>) list;
+            holder.binding.text.setText(holder.binding.getRoot().getContext().getString(R.string.list_1_more, projects.get(0).getName()));
+            holder.binding.text.setPaintFlags(holder.binding.text.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+            holder.binding.text.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(holder.binding.getRoot().getContext());
+                builder.setTitle(R.string.dialog_projects);
+                final ArrayAdapter<String> adapter = new ArrayAdapter<>(holder.binding.getRoot().getContext(), R.layout.select_dialog_item);
+                for (Project project : projects) {
+                  adapter.add(project.getName());
+                }
+                builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
+                  @Override
+                  public void onClick(DialogInterface dialog, int which) {
+                    Project project = projects.get(which);
+                    dialog.dismiss();
+                    Intent intent = new Intent(holder.binding.getRoot().getContext(), ProjectActivity.class);
+                    intent.putExtra(ProjectActivity.PROJECT_ATTR, project);
+                    holder.binding.getRoot().getContext().startActivity(intent);
+                  }
+                });
+                builder.show();
+              }
+            });
+          } else if (list.get(0) instanceof StaffCert) {
+            initListItem(list, holder, StaffCertActivity.STAFF_CERT_ATTR, StaffCertActivity.class, R.string.staff_cert_detail_title);
+          } else if (list.get(0) instanceof StaffAchievement) {
+            initListItem(list, holder, StaffAchievementActivity.STAFF_ACHIEVEMENT_ATTR, StaffAchievementActivity.class, R.string.staff_achievement_detail_title);
           }
         }
       } else {
         throw new RuntimeException("unsupported class: " + object.getClass());
       }
     }
+  }
+
+  private String getName(Object object) {
+    if (object instanceof Project) {
+      return ((Project) object).getName();
+    } else if (object instanceof StaffCert) {
+      return ((StaffCert) object).getType();
+    } else if (object instanceof StaffAchievement) {
+      return ((StaffAchievement) object).getProjectName();
+    }
+    return "";
+  }
+
+  private <T extends Serializable> void initListItem(final List<T> list,
+                                                     final AttributesAdapter.ViewHolder holder,
+                                                     final String attr, final Class clazz,
+                                                     final @StringRes int id) {
+    holder.binding.text.setText(holder.binding.getRoot().getContext().getString(R.string.list_1_more, getName(list.get(0))));
+    holder.binding.text.setPaintFlags(holder.binding.text.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+    holder.binding.text.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(holder.binding.getRoot().getContext());
+        builder.setTitle(id);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(holder.binding.getRoot().getContext(), R.layout.select_dialog_item);
+        for (T t : list) {
+          adapter.add(getName(t));
+        }
+        builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
+          @Override
+          public void onClick(DialogInterface dialog, int which) {
+            T t = list.get(which);
+            dialog.dismiss();
+            Intent intent = new Intent(holder.binding.getRoot().getContext(), clazz);
+            intent.putExtra(attr, t);
+            holder.binding.getRoot().getContext().startActivity(intent);
+          }
+        });
+        builder.show();
+      }
+    });
   }
 
   @Override

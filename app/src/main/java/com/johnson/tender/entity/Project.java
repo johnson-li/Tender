@@ -35,13 +35,17 @@ public class Project implements Serializable {
   String projectNumber;
   @SerializedName("ProjectType")
   String projectType;
+  @SerializedName("Company")
+  Company company;
 
   public Company getCompany() {
+
     return company;
   }
 
-  @SerializedName("Company")
-  Company company;
+  public void setCompany(Company company) {
+    this.company = company;
+  }
 
   public String getProjectType() {
     return projectType;

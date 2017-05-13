@@ -38,6 +38,12 @@ public class Company implements Serializable {
   private List<CompanyCert> companyCerts;
   @SerializedName("Staffs")
   private List<Staff> staffs;
+  @SerializedName("Projects")
+  private List<Project> projects;
+
+  public List<Project> getProjects() {
+    return projects;
+  }
 
   public List<Staff> getStaffs() {
     return staffs;

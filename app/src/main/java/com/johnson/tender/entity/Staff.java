@@ -3,6 +3,7 @@ package com.johnson.tender.entity;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by Johnson on 2017/5/2.
@@ -45,6 +46,18 @@ public class Staff implements Serializable {
   private String link;
   @SerializedName("Company")
   private Company company;
+  @SerializedName("StaffCerts")
+  private List<StaffCert> staffCerts;
+  @SerializedName("StaffAchievements")
+  private List<StaffAchievement> staffAchievements;
+
+  public List<StaffCert> getStaffCerts() {
+    return staffCerts;
+  }
+
+  public List<StaffAchievement> getStaffAchievements() {
+    return staffAchievements;
+  }
 
   public Company getCompany() {
     return company;
