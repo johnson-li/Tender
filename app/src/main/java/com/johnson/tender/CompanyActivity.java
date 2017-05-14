@@ -1,11 +1,15 @@
 package com.johnson.tender;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.johnson.tender.api.RestApi;
 import com.johnson.tender.databinding.ActivityCompanyBinding;
@@ -86,8 +90,19 @@ public class CompanyActivity extends DetailActivity<ActivityCompanyBinding> {
         menu.findItem(R.id.likeNum).setTitle(String.valueOf(company.getLikedNum()));
         return true;
       case R.id.map:
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=" + company.getOperatingLocation()));
+        try {
+          startActivity(intent);
+        } catch (ActivityNotFoundException e) {
+          Toast.makeText(this, "No map activity found", Toast.LENGTH_SHORT).show();
+        }
         return true;
       case R.id.share:
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, company.getCompanyName());
+        sendIntent.setType("text/plain");
+        startActivity(sendIntent);
         return true;
     }
     return super.onOptionsItemSelected(item);
