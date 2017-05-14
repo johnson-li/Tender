@@ -45,4 +45,11 @@ public interface RestApi {
   @GET("user/login")
   Observable<ObjectResponse<User>> login(@Query("email") String email,
                                          @Query("password") String password);
+
+  @GET("company_like/like")
+  Observable<ObjectResponse<String>> companyLike(@Query("company_id") long companyId);
+
+  @GET("company_like/unlike")
+  Observable<ObjectResponse<String>> companyUnlike(@Query("company_id") long companyId);
+
 }

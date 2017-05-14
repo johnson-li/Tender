@@ -144,4 +144,9 @@
     <string name="dialog_projects">工程列表</string>
 
     <string name="list_1_more">%1$s 等</string>
+
+    <string name="company_like">like / unlike</string>
+    <string name="company_like_num">Like Number</string>
+    <string name="company_like_show_in_map">在地图中打开</string>
+    <string name="company_like_share">分享</string>
 </resources>

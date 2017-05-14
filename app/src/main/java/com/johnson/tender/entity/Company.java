@@ -40,6 +40,27 @@ public class Company implements Serializable {
   private List<Staff> staffs;
   @SerializedName("Projects")
   private List<Project> projects;
+  @SerializedName("Liked")
+  private boolean liked;
+  @SerializedName("LikedNum")
+  private int likedNum;
+
+  public boolean isLiked() {
+    return liked;
+  }
+
+  public void setLiked(boolean liked) {
+
+    this.liked = liked;
+  }
+
+  public int getLikedNum() {
+    return likedNum;
+  }
+
+  public void setLikedNum(int likedNum) {
+    this.likedNum = likedNum;
+  }
 
   public List<Project> getProjects() {
     return projects;

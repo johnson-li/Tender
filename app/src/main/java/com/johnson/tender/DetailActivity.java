@@ -4,7 +4,6 @@ import android.databinding.DataBindingUtil;
 import android.databinding.ViewDataBinding;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,9 +14,10 @@ import android.view.MenuItem;
  * Created by Johnson on 2017/5/7.
  */
 
-public abstract class DetailActivity<T extends ViewDataBinding> extends AppCompatActivity {
+public abstract class DetailActivity<T extends ViewDataBinding> extends BaseActivity {
   AttributesAdapter adapter = new AttributesAdapter();
   T binding;
+  Object data;
 
   abstract Toolbar getToolbar();
 
@@ -52,7 +52,8 @@ public abstract class DetailActivity<T extends ViewDataBinding> extends AppCompa
     getContainer().addItemDecoration(new DividerItemDecoration(getApplicationContext(), layoutManager.getOrientation()));
 
     if (getIntent().hasExtra(getAttr())) {
-      adapter.add(getIntent().getSerializableExtra(getAttr()));
+      data = getIntent().getSerializableExtra(getAttr());
+      adapter.add(data);
     }
   }
 

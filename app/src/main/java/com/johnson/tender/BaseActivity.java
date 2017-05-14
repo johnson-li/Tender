@@ -29,7 +29,9 @@ public class BaseActivity extends AppCompatActivity {
             if (!t.isSuccessful()) {
               Toast.makeText(getApplicationContext(), "Error: " + t.error(), Toast.LENGTH_SHORT).show();
             } else {
-              consumer.accept(t);
+              if (consumer != null) {
+                consumer.accept(t);
+              }
             }
           }
         }, new Consumer<Throwable>() {

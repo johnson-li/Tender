@@ -1,5 +1,6 @@
 package com.johnson.tender.dagger.component;
 
+import com.johnson.tender.CompanyActivity;
 import com.johnson.tender.CompanyFragment;
 import com.johnson.tender.LoginActivity;
 import com.johnson.tender.MainActivity;
@@ -21,6 +22,8 @@ import dagger.Component;
 public interface NetworkComponent {
 
   void inject(MainActivity activity);
+
+  void inject(CompanyActivity activity);
 
   void inject(LoginActivity activity);
 
