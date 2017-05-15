@@ -23,6 +23,7 @@ import javax.inject.Inject;
 
 public class CompanyActivity extends DetailActivity<ActivityCompanyBinding> {
   public static final String COMPANY_ATTR = "company";
+  public static final String LIKE_ATTR = "like";
   Menu menu;
 
   @Inject
@@ -64,10 +65,14 @@ public class CompanyActivity extends DetailActivity<ActivityCompanyBinding> {
     Company company = (Company) data;
     this.menu = menu;
     getMenuInflater().inflate(R.menu.company, menu);
-    if (company.isLiked()) {
-      menu.findItem(R.id.like).setIcon(R.drawable.ic_favorite_black_24dp);
+    if (getIntent().getBooleanExtra(LIKE_ATTR, false)) {
+      if (company.isLiked()) {
+        menu.findItem(R.id.like).setVisible(true);
+        menu.findItem(R.id.like).setIcon(R.drawable.ic_favorite_black_24dp);
+      }
+      menu.findItem(R.id.likeNum).setVisible(true);
+      menu.findItem(R.id.likeNum).setTitle(String.valueOf(company.getLikedNum()));
     }
-    menu.findItem(R.id.likeNum).setTitle(String.valueOf(company.getLikedNum()));
     return true;
   }
 

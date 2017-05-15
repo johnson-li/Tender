@@ -29,6 +29,7 @@ public class CompanyAdapter extends AbstractAdapter<CompanyBinding, Company> {
         public void onClick(View v) {
           Intent intent = new Intent(holder.binding.getRoot().getContext(), CompanyActivity.class);
           intent.putExtra(CompanyActivity.COMPANY_ATTR, list.get(holder.getAdapterPosition()));
+          intent.putExtra(CompanyActivity.LIKE_ATTR, true);
           holder.binding.getRoot().getContext().startActivity(intent);
         }
       });
