@@ -33,4 +33,5 @@
           android:paddingEnd="45dip"
           android:paddingStart="45dip"
           android:textAppearance="?android:attr/textAppearanceLarge"
-          android:textColor="?android:attr/textColorAlertDialogListItem"/>
+          android:textColor="?android:attr/textColorAlertDialogListItem"
+          android:textSize="18sp"/>

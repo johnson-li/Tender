@@ -8,6 +8,8 @@ import android.support.annotation.StringRes;
 import android.support.v4.util.Pair;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
+import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -305,9 +307,9 @@ public class AttributesAdapter extends RecyclerView.Adapter<AttributesAdapter.Vi
       public void onClick(View v) {
         AlertDialog.Builder builder = new AlertDialog.Builder(holder.binding.getRoot().getContext());
         builder.setTitle(id);
-        final ArrayAdapter<String> adapter = new ArrayAdapter<>(holder.binding.getRoot().getContext(), R.layout.select_dialog_item);
+        final ArrayAdapter<Spanned> adapter = new ArrayAdapter<>(holder.binding.getRoot().getContext(), R.layout.select_dialog_item);
         for (T t : list) {
-          adapter.add(getName(t));
+          adapter.add(Html.fromHtml(String.format("<u>%s</u>", getName(t))));
         }
         builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
           @Override

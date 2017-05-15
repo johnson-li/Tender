@@ -23,6 +23,7 @@ public class StaffAdapter extends AbstractAdapter<StaffBinding, Staff> {
       Staff staff = list.get(position);
       binding.name.setText(staff.getName());
       binding.id.setText(staff.getIdentityId());
+      binding.company.setText(staff.getCompany().getCompanyName());
       binding.getRoot().setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
