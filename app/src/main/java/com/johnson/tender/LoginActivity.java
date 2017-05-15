@@ -1,9 +1,12 @@
 package com.johnson.tender;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -24,13 +27,18 @@ import io.reactivex.functions.Consumer;
 
 public class LoginActivity extends BaseActivity {
 
+  private static final int SIGNUP_REQUEST_CODE = 11;
   ActivityLoginBinding binding;
-
   @Inject
   RestApi restApi;
-
   @Inject
   Preferences preferences;
+
+  @Override
+  public boolean onCreateOptionsMenu(Menu menu) {
+    getMenuInflater().inflate(R.menu.login, menu);
+    return true;
+  }
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,9 +66,13 @@ public class LoginActivity extends BaseActivity {
           @Override
           public void accept(@NonNull ObjectResponse<User> userObjectResponse) throws Exception {
             User user = userObjectResponse.getContent();
-            preferences.setUser(user);
-            Toast.makeText(LoginActivity.this, "Login succeeded!", Toast.LENGTH_SHORT).show();
-            finish();
+            if (user != null) {
+              preferences.setUser(user);
+              Toast.makeText(LoginActivity.this, "Login succeeded!", Toast.LENGTH_SHORT).show();
+              finish();
+            } else {
+              Toast.makeText(LoginActivity.this, "Login failed!", Toast.LENGTH_SHORT).show();
+            }
           }
         }, dialog);
       }
@@ -72,7 +84,23 @@ public class LoginActivity extends BaseActivity {
     switch (item.getItemId()) {
       case android.R.id.home:
         finish();
+      case R.id.action_signup:
+        Intent intent = new Intent(getApplicationContext(), SignupActivity.class);
+        startActivityForResult(intent, SIGNUP_REQUEST_CODE);
+        return true;
     }
     return super.onOptionsItemSelected(item);
+  }
+
+
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    switch (requestCode) {
+      case SIGNUP_REQUEST_CODE:
+        if (resultCode == Activity.RESULT_OK) {
+          finish();
+        }
+    }
+    super.onActivityResult(requestCode, resultCode, data);
   }
 }

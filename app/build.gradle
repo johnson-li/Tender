@@ -19,8 +19,8 @@ android {
         }
 
         debug {
-//            buildConfigField "String", "BASE_URL", '"http://192.168.56.1:5123"'
-            buildConfigField "String", "BASE_URL", '"http://db.xsran.me:5123"'
+            buildConfigField "String", "BASE_URL", '"http://192.168.56.1:5123"'
+//            buildConfigField "String", "BASE_URL", '"http://db.xsran.me:5123"'
             buildConfigField "String", "EMAIL", '"johnsonli1993@gmail.com"'
             buildConfigField "String", "PASSWORD", '"123"'
         }

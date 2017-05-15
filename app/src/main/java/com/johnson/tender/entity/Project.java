@@ -23,20 +23,44 @@ public class Project implements Serializable {
   String location;
   @SerializedName("SectionName")
   String sectionName;
-  @SerializedName("ConstructionOrganization")
-  String constructionOrganization;
   @SerializedName("BiddingRecord")
-  String biddingRecord;
-  @SerializedName("ContractRecord")
-  String contractRecord;
-  @SerializedName("SubContract")
-  String subContract;
-  @SerializedName("ProjectNumber")
   String projectNumber;
   @SerializedName("ProjectType")
   String projectType;
   @SerializedName("Company")
   Company company;
+  @SerializedName("SectionScale")
+  String sectionScale;
+  @SerializedName("ConstructionOrganization")
+  String constructionOrganization;
+  @SerializedName("BidddingRecord")
+  String biddingRecord;
+  @SerializedName("ContractRecord")
+  String contractRecord;
+  @SerializedName("ConstructionPermissionNumber")
+  String constructionPermissionNumber;
+  @SerializedName("ConstructionPermissionDate")
+  String constructionPermissionDate;
+  @SerializedName("FinishedRecord")
+  String finishedRecord;
+  @SerializedName("SubContract")
+  String subContract;
+
+  public String getSectionScale() {
+    return sectionScale;
+  }
+
+  public String getConstructionPermissionNumber() {
+    return constructionPermissionNumber;
+  }
+
+  public String getConstructionPermissionDate() {
+    return constructionPermissionDate;
+  }
+
+  public String getFinishedRecord() {
+    return finishedRecord;
+  }
 
   public Company getCompany() {
 

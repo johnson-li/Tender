@@ -50,6 +50,18 @@ public class Staff implements Serializable {
   private List<StaffCert> staffCerts;
   @SerializedName("StaffAchievements")
   private List<StaffAchievement> staffAchievements;
+  @SerializedName("AchievementNum")
+  private int achievementNumber;
+  @SerializedName("CertNum")
+  private int certNumber;
+
+  public int getAchievementNumber() {
+    return achievementNumber;
+  }
+
+  public int getCertNumber() {
+    return certNumber;
+  }
 
   public List<StaffCert> getStaffCerts() {
     return staffCerts;

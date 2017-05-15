@@ -5,6 +5,7 @@ import com.johnson.tender.CompanyFragment;
 import com.johnson.tender.LoginActivity;
 import com.johnson.tender.MainActivity;
 import com.johnson.tender.ProjectFragment;
+import com.johnson.tender.SignupActivity;
 import com.johnson.tender.StaffFragment;
 import com.johnson.tender.dagger.module.AppModule;
 import com.johnson.tender.dagger.module.NetworkModule;
@@ -26,6 +27,8 @@ public interface NetworkComponent {
   void inject(CompanyActivity activity);
 
   void inject(LoginActivity activity);
+
+  void inject(SignupActivity activity);
 
   void inject(CompanyFragment fragment);
 

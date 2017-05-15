@@ -46,6 +46,17 @@ public interface RestApi {
   Observable<ObjectResponse<User>> login(@Query("email") String email,
                                          @Query("password") String password);
 
+  @GET("user/signup")
+  Observable<ObjectResponse<User>> signup(@Query("email") String email,
+                                          @Query("password") String password,
+                                          @Query("verification") String verification);
+
+  @GET("user/verify_email")
+  Observable<ObjectResponse<String>> verifyEmail(@Query("email") String email);
+
+  @GET("user/verify_phone")
+  Observable<ObjectResponse<String>> verifyPhone(@Query("phone") String email);
+
   @GET("company_like/like")
   Observable<ObjectResponse<String>> companyLike(@Query("company_id") long companyId);
 

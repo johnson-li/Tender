@@ -44,6 +44,12 @@ public class Company implements Serializable {
   private boolean liked;
   @SerializedName("LikedNum")
   private int likedNum;
+  @SerializedName("OrganizationCode")
+  private String organizationCode;
+
+  public String getOrganizationCode() {
+    return organizationCode;
+  }
 
   public boolean isLiked() {
     return liked;

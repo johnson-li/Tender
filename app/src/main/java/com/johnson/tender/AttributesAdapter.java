@@ -78,6 +78,11 @@ public class AttributesAdapter extends RecyclerView.Adapter<AttributesAdapter.Vi
     add(R.string.staff_detail_company_name, staff.getCompany());
     add(R.string.staff_detail_cert, staff.getStaffCerts());
     add(R.string.staff_detail_achievements, staff.getStaffAchievements());
+    add(R.string.staff_detail_edu, staff.getEduBackground());
+    add(R.string.staff_detail_degree, staff.getDegree());
+    add(R.string.staff_detail_safe_id, staff.getSafeProductingCertId());
+    add(R.string.staff_detail_achi_num, staff.getAchievementNumber());
+    add(R.string.staff_detail_cert_num, staff.getCertNumber());
 
     if (staff.getStaffCerts() != null) {
       for (StaffCert staffCert : staff.getStaffCerts()) {
@@ -99,6 +104,16 @@ public class AttributesAdapter extends RecyclerView.Adapter<AttributesAdapter.Vi
     add(R.string.project_detail_project_number, project.getProjectNumber());
     add(R.string.project_detail_type, project.getProjectType());
     add(R.string.project_detail_company, project.getCompany());
+    add(R.string.project_detail_scale, project.getScale());
+    add(R.string.project_detail_section, project.getSectionName());
+    add(R.string.project_detail_section_scale, project.getSectionScale());
+    add(R.string.project_detail_construction, project.getConstructionOrganization());
+    add(R.string.project_detail_bidding_record, project.getBiddingRecord());
+    add(R.string.project_detail_contract_record, project.getContractRecord());
+    add(R.string.project_detail_construction_permission_num, project.getConstructionPermissionNumber());
+    add(R.string.project_detail_construction_permission_date, project.getConstructionPermissionDate());
+    add(R.string.project_detail_finished_record, project.getFinishedRecord());
+    add(R.string.project_detail_sub_contract, project.getSubContract());
   }
 
   public void add(Company company) {
@@ -116,6 +131,7 @@ public class AttributesAdapter extends RecyclerView.Adapter<AttributesAdapter.Vi
     add(R.string.company_detail_certs, company.getCompanyCerts() == null || company.getCompanyCerts().isEmpty() ? null : company.getCompanyCerts().get(0));
     add(R.string.company_detail_staff, company.getStaffs());
     add(R.string.company_detail_projects, company.getProjects());
+    add(R.string.company_detail_organization_code, company.getOrganizationCode());
 
     if (company.getProjects() != null) {
       for (Project project : company.getProjects()) {
