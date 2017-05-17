@@ -99,6 +99,7 @@ public class SignupActivity extends BaseActivity {
     switch (item.getItemId()) {
       case android.R.id.home:
         finish();
+        return true;
       case R.id.verification:
         String email = binding.email.getText().toString();
         if (isValidEmail(email)) {
